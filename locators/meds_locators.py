@@ -4,5 +4,4 @@ class MedsLocators:
     DAWKA = 'tr.rowlek.hint td:nth-of-type(3)'
     OPAKOWANIE = ''
     OPLATA = ''
-    CENA = 'tr.rowlek.hint td:nth-of-type(9) span::after'
-    LINK = ''
+    CENA = 'tr.rowlek.hint td:nth-of-type(9)'

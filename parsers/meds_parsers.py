@@ -29,5 +29,5 @@ class MedsParser:
     @property
     def cena(self):
         locator = MedsLocators.CENA
-        cena_leku = self.parent.select_one(locator).string
+        cena_leku = self.parent.select_one(locator)
         return cena_leku
