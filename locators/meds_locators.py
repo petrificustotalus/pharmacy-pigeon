@@ -1,7 +1,8 @@
 class MedsLocators:
     NAZWA = 'td.td-nazwa-leku b.nazwa-leku'
-    DAWKA = ''
+    POSTAC = 'tr.rowlek.hint td:nth-of-type(2)'
+    DAWKA = 'tr.rowlek.hint td:nth-of-type(3)'
     OPAKOWANIE = ''
     OPLATA = ''
-    CENA = ''
+    CENA = 'tr.rowlek.hint td:nth-of-type(9) span::after'
     LINK = ''
