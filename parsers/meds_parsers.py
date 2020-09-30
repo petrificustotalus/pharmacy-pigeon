@@ -1,3 +1,4 @@
+import re
 from locators.meds_locators import MedsLocators
 
 
@@ -29,5 +30,8 @@ class MedsParser:
     @property
     def cena(self):
         locator = MedsLocators.CENA
-        cena_leku = self.parent.select_one(locator)
-        return cena_leku
+        cena_leku = str(self.parent.select_one(locator))
+        pattern = '.*<span.*span>(.*)</td>'
+        mather = re.search(pattern, cena_leku)
+
+        return mather.group(1)
