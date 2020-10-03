@@ -1,27 +1,32 @@
 from flask import Flask
 
-import requests
+from database import database
+from scrapper.first_scrapper import scrapp_meds
+
+USER_CHOICE = """
+Enter:
+- 'd' to see what's in database
+- 's' to see scrapper in work :)
+- 'q' to quit
 
 
-from pages.all_meds_pages import MadsPage
-
-page_content = requests.get('https://www.lekinfo24.pl/lek/Ketoprofen%20LGO.html').content
-page = MadsPage(page_content)
-
-leki = page.lek
-
-with open('mpstrony.txt', 'r') as file:
-    lines = file.readlines()
-    for line in lines:
-        new_line = line.split(',')
-        page_content = requests.get(new_line[0]).content
-        page = MadsPage(page_content)
-        leki.extend(page.lek)
+Your choice: """
 
 
-for e in leki:
-    lek = e
-    print(e)
+def menu():
+    database.create_meds_table()
+    user_input = input(USER_CHOICE)
+    while user_input != 'q':
+        if user_input == 'd':
+            pass
+        if user_input == 's':
+            scrapp_meds()
+        else:
+            print("Your input is invalid! Try once again.")
+        user_input = input(USER_CHOICE)
+
+
+menu()
 
 # app = Flask(__name__)
 #
