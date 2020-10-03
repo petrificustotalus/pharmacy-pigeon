@@ -18,6 +18,7 @@ def scrapp_meds():
             page = MadsPage(page_content)
             leki.extend(page.lek)
 
+            # Here will be the dictionery collecting all the properties????
     for e in leki:
         lek = e
         print(e)
