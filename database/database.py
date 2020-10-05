@@ -1,5 +1,5 @@
 import sqlite3
-from typing import List, Dict, Union
+from typing import List, Dict, Union, Generator
 from .database_connection import DatabaseConnection
 
 Med = Dict[ str, Union[int, str, float]]  # new typing type
@@ -12,12 +12,19 @@ def create_meds_table() -> None:
                        ' opakowanie text ,cena float )')
 
 
-def add_med_to_the_table(id: int, nazwa: str, postac: str, dawka: str, opakowanie: str, cena: float) -> None:
+def generate_id():
+    new_id = 0
+    yield new_id
+    new_id += 1
+
+
+def add_med_to_the_table(nazwa: str, postac: str, dawka: str, opakowanie: str, cena: float) -> None:
     try:
         with DatabaseConnection('medsdata.db') as connection:
             cursor = connection.cursor()
 
-            cursor.execute(f'INSERT INTO meds VALUES(?, ?, ?, ?, ?, ?) ', (id, nazwa, postac, dawka, opakowanie, cena))
+            new_id = generate_id()
+            cursor.execute(f'INSERT INTO meds VALUES(?, ?, ?, ?, ?, ?) ', (new_id, nazwa, postac, dawka, opakowanie, cena))
         '''
         Can I use generator here to generates id, except add it to the function 
         that will collect all the properties from scrapper?? I don't know what to do with id yet :(

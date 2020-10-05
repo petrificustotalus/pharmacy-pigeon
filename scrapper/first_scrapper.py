@@ -19,9 +19,9 @@ def scrapp_meds():
             page = MadsPage(page_content)
             leki.extend(page.lek)
 
+    # I think that id_generator supposed to be in a different file, but I don't know where
+    # and what should be the general content of this file
+
     for lek in leki:
-        """
-        generate_id
-        database.add_med_to_the_table(lek['nazwa'], lek['nazwa'], lek['postac'], lek['dawka'], lek['opakowanie'], lek['cena'])
-        """
+        database.add_med_to_the_table(lek['nazwa'], lek['postac'], lek['dawka'], lek['opakowanie'], lek['cena'])
         print(lek)
