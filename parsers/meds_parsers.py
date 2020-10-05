@@ -39,5 +39,7 @@ class MedsParser:
         cena_leku = str(self.parent.select_one(locator))
         pattern = '.*<span.*span>(.*)</td>'
         mather = re.search(pattern, cena_leku)
+        obrobiona_cena = mather.group(1).split(',')
+        właściwa_cena = obrobiona_cena[0] + '.' + obrobiona_cena[1]
 
-        return mather.group(1)
+        return float(właściwa_cena)
