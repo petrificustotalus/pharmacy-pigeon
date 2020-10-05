@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 
-from locators.meds_pages_locators import MpMedsPageLocators
+from locators.meds_pages_locators import Lekiinfo24PageLocators
 from parsers.meds_parsers import MedsParser
 
 
@@ -10,6 +10,6 @@ class MadsPage:
 
     @property
     def lek(self):
-        locator = MpMedsPageLocators.MEDICAMENT
+        locator = Lekiinfo24PageLocators.MEDICAMENT
         leki = [MedsParser(e) for e in self.soup.select(locator)]
         return leki
