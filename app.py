@@ -18,7 +18,7 @@ def menu():
     user_input = input(USER_CHOICE)
     while user_input != 'q':
         if user_input == 'd':
-            pass
+            database.print_all_meds()
         if user_input == 's':
             scrapp_meds()
         else:

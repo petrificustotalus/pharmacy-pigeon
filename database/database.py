@@ -13,7 +13,7 @@ def create_meds_table() -> None:
 
 
 def generate_id():
-    new_id = 0
+    new_id = 1
     yield new_id
     new_id += 1
 
@@ -43,3 +43,9 @@ def get_all_meds() -> List[Med]:
         # cursor.fetchall() --> [(id, nazwa, postac, dawka, opakowanie, cena), (id, nazwa, postac, ...), ...]
 
     return meds
+
+
+def print_all_meds() -> None:
+    meds = get_all_meds()
+    for medicament in meds:
+        print(medicament)
