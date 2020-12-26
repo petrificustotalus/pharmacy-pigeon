@@ -2,7 +2,7 @@
 name = "pharmacy-pigeon"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["petrificustotalus <natalka_nowak@tlen.pl>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
