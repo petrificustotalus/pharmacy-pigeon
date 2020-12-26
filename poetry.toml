@@ -1,2 +1,2 @@
 [virtualenvs]
-path = "$(pwd)/.venv"
+in-project = true
