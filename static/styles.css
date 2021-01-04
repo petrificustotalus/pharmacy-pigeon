@@ -6,9 +6,9 @@
 }
 
 .background{
-    top: -600px;
     background-image: url(../static/background.jpg);
-    height: 90vh;
+    background-size: cover;
+    height: 92vh;
 }
 
 .container{
@@ -26,6 +26,7 @@
 }
 
 .row{
+    padding-top: 100px;
     margin-left: -10px;
     margin-right: -10px;
     width: 100%;
@@ -67,20 +68,16 @@
 .my-footer{
     background-color: #3c4145;
     color: #FFF;
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
 }
 
 .wrapper{
-    padding-bottom: 1.5rem;
     font-family: 'Roboto', sans-serif;
-    box-sizing: border-box;
-    overflow: hidden;
     padding-left: 18px;
     padding-right: 18px;
-    max-width: 1236px;
     margin-left: auto;
     margin-right: auto;
-    background-attachment: fixed;
-    background-size: cover;
 }
 
 .inline-element{
