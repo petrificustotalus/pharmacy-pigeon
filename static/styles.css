@@ -8,7 +8,7 @@
 .background{
     background-image: url(../static/background.jpg);
     background-size: cover;
-    height: 92vh;
+    height: 88.5vh;
 }
 
 .container{
@@ -25,35 +25,32 @@
     }
 }
 
-.row{
-    padding-top: 100px;
-    margin-left: -10px;
-    margin-right: -10px;
-    width: 100%;
-}
-
-.col-md-9{
-    min-height: 1px;
-    padding-left: 10px;
-    padding-right: 10px;
-    position: relative;
-    width: 100%;
+.search-container-padding{
+    padding-top: 125px;
 }
 
 .homepage-search{
-    background-color: violet;
+    background-color: rgba(245, 192, 210, 0.75);
     border-radius: 7px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.h1-padding{
+    padding-left: 10px;
+    padding-top: 10px;
 }
 
 .col-half{
-    float: left;
-    width: 100%;
+    width: 49.99999%;
+    display: inline-block;
 }
 
-@media (min-width: 767px){
+@media (max-width: 767px){
     .col-half{
-        width: 49.99999%;
-        display: inline;
+        float: left;
+        width: 100%;
     }
 }
 
@@ -63,6 +60,10 @@
     box-sizing: border-box;
     border: 3px solid #ccc;
     transition: 0.5s;
+}
+
+.btn-search{
+    margin-top: 10px;
 }
 
 .my-footer{
@@ -85,6 +86,6 @@
 }
 
 .btn-footer {
-    float: right
+    float: right;
 }
 
