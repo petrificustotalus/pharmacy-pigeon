@@ -7,6 +7,7 @@ authors = ["petrificustotalus <natalka_nowak@tlen.pl>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 Flask = "^1.1.2"
+Flask-SQLAlchemy = "^2.4.4"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.6.0"
