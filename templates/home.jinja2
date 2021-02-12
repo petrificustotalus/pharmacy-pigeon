@@ -22,17 +22,16 @@
                         <div class="homepage-search">
                         <h1 class="h1-padding">Znajdź lek w swoim mieście</h1>
                             <div class="row">
-                                <form class="form-inline my-2 my-lg-0" method="GET">
-                                    <div class="col-half">
-                                        <input class="focus" type="search" name="miasto" placeholder="Miasto" name="city">
+                                <form class="form-inline my-2 my-lg-0"  method="POST">
+                                    {% for field in form %}
+                                        <div class="col-half, form-group">
+                                            {{ field.label() }}
+                                            {{ field(class="form-control") }}
+                                        </div>
+                                    {% endfor %}
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-danger btn-search">Szukaj</button>
                                     </div>
-                                    <div class="col-half">
-                                        <input class="focus" type="search" name="nazwa leku" placeholder="Nazwa leku" name="drugname">
-                                    </div>
-                                </div>
-                                <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-danger btn-search">Szukaj</button>
-                                </div>
                                 </form>
                             </div>
                         </div>
