@@ -25,10 +25,13 @@
                                 Here will be some pharmacy information
                             </div>
                             <div class="card-body">
-                              <h5 class="card-title">{{ drug.name }}</h5>
-                              <p class="card-text">
-                                  Lek: ..., ilość: ...
-                              </p>
+                                <h5 class="card-title">{{ drug.name }}</h5>
+                                <p class="card-text">
+                                  Ilość: {{ drug.size }}, Moc: {{ drug.power }}, Refundacja: {{ drug.refundation }}%, Na receptę: {{ drug.prescription }}
+                                </p>
+                                <p class="card-text">
+                                  Cena:
+                                </p>
                               <a href="#" class="btn btn-danger">Order</a>
                             </div>
                         </div>
