@@ -69,13 +69,13 @@ class Client(db.Model):
     def __repr__(self):
         return f'<Pharmacy id: {self.id}, name: {self.name}, surname: {self.surname}, email: {self.adress}, phone: {self.phone}, address: {self.address}>'
 
-# not inicialized yet - not sure at all how it should working :/
-order = db.Table('order',
-                    db.Column('order_id', db.Integer, primary_key=True),
-                    db.Column('client_id', db.Integer, db.ForeignKey('client.id')),
-                    db.Column('pharmacy_id', db.Integer, db.ForeignKey('pharmacy.id')),
-                    db.Column('drug_id', db.Integer, 'pharmacy.id'))
-                    # AJAJAJAJAJAJAJ
+# # not inicialized yet - not sure at all how it should working :/
+# order = db.Table('order',
+#                     db.Column('order_id', db.Integer, primary_key=True),
+#                     db.Column('client_id', db.Integer, db.ForeignKey('client.id')),
+#                     db.Column('pharmacy_id', db.Integer, db.ForeignKey('pharmacy.id')),
+#                     db.Column('drug_id', db.Integer, 'pharmacy.id'))
+#                     # AJAJAJAJAJAJAJ
 
 
 # dla 100 leków: +
