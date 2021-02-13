@@ -44,11 +44,11 @@ class Drug(db.Model):
 
 # PRICES TABLE:
 # Is it supposed to be one table like this: (OPTION 1)
-# prices = db.Table('price',
-#                     db.Column('drug_id', db.Integer, db.ForeignKey('drug.id'))
-#                     db.Column('pharmacy_id', db.Integer, db.ForeignKey('pharmacy.id'))
-#                     db.Column('price', db.Integer, db)
-#                     db.Column('quantity_available')
+prices = db.Table('prices',
+                    db.Column('drug_id', db.Integer, db.ForeignKey('drug.id'))
+                    db.Column('pharmacy_id', db.Integer, db.ForeignKey('pharmacy.id'))
+                    db.Column('price', db.Integer)
+                    db.Column('quantity_available', db.Integer)
 # 
 # Or is it better to do 3 columns with prices for each one from the 3 pharmacies (and then I have no idea how to conect the column with the corect pharmacy, but i gues it would be easier :P)?
 # Or for each pharmacy make table with: drug_id, drug_price, available_quantity? 

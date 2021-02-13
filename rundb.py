@@ -4,7 +4,7 @@ from app import db
 
 from models import *
 
-# db.create_all()
+db.create_all()
 
 # p = Pharmacy(name='Super Pharmacy', phone=777666555, adress="ul. Młynowa 60")
 
@@ -15,8 +15,9 @@ from models import *
 # d3 = Drug(name='Groprinosin', size=20, power=500, state='tabs', prescription=False, refundation=0)
 # d4 = Drug(name='Apap', size=12, power=500, state='tabs', prescription=False, refundation=0)
 
-p1 = Pharmacy(name='New Pharmacy', phone=777666543, adress="ul. Młynowa 61")
-p2 = Pharmacy(name='Extra Cool Pharmacy', phone=777666531, adress="ul. Młynowa 62")
+# p1 = Pharmacy(name='New Pharmacy', phone=777666543, adress="ul. Młynowa 61")
+# p2 = Pharmacy(name='Extra Cool Pharmacy', phone=777666531, adress="ul. Młynowa 62")
+
 
 db.session.add(p1)
 db.session.add(p2)
