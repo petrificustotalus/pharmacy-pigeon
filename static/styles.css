@@ -1,14 +1,15 @@
 .start{
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 91vh;
     overflow: hidden;
 }
 
 .background{
+    margin-top: -70px;
     background-image: url(../static/background.jpg);
     background-size: cover;
-    height: 88.25vh;
+    height: 110%;
 }
 
 .container{
@@ -26,7 +27,7 @@
 }
 
 .search-container-padding{
-    padding-top: 125px;
+    padding-top: 220px;
 }
 
 .homepage-search{
@@ -71,6 +72,7 @@
     color: #FFF;
     padding-bottom: 1.5rem;
     padding-top: 1.5rem;
+    height: 9vh; !important
 }
 
 .wrapper{
@@ -87,4 +89,10 @@
 
 .btn-footer {
     float: right;
+}
+
+/* search_results.html */
+
+.bar-color{
+    background-color: rgba(245, 192, 210, 0.75);
 }
