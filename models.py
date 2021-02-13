@@ -11,11 +11,11 @@ class Pharmacy(db.Model):
     phone = db.Column(db.Integer)
     # that will be new separate table:
     adress = db.Column(db.String(140))
-    
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
- 
+
 
     def __repr__(self):
         return f'<Pharmacy id: {self.id}, name: {self.name}, phone: {self.phone}, adress: {self.adress}>'
@@ -27,9 +27,9 @@ class Pharmacy(db.Model):
 # none of them can be null
 class Drug(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(140))    
+    name = db.Column(db.String(140))
     size = db.Column(db.Integer)
-    power = db.Column(db.Float)  
+    power = db.Column(db.Float)
     state = db.Column(db.String(140))
     prescription = db.Column(db.Boolean)
     refundation = db.Column(db.Integer)
@@ -48,7 +48,7 @@ class Drug(db.Model):
 #                     db.Column('drug_id', db.Integer, db.ForeignKey('drug.id'))
 #                     db.Column('pharmacy_id', db.Integer, db.ForeignKey('pharmacy.id'))
 #                     db.Column('price', db.Integer, db)
-#                     db.Column('quantity_available)
+#                     db.Column('quantity_available')
 # 
 # Or is it better to do 3 columns with prices for each one from the 3 pharmacies (and then I have no idea how to conect the column with the corect pharmacy, but i gues it would be easier :P)?
 # Or for each pharmacy make table with: drug_id, drug_price, available_quantity? 
