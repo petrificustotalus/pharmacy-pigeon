@@ -1,6 +1,7 @@
 {% extends 'base.jinja2' %}
 {% block content %}
         <div class="position-absolute top-50">
+            {% for item in drug.drugitems %}
             <div class="card">
                 <div class="card-header bar-color">
                     Here will be some pharmacy information
@@ -11,10 +12,11 @@
                         Ilość: {{ drug.size }}, Moc: {{ drug.power }}, Refundacja: {{ drug.refundation }}%, Na receptę: {{ drug.prescription }}
                     </p>
                     <p class="card-text">
-                        Cena:
+                        Cena: {{ item.price }}
                     </p>
                     <a href="#" class="btn btn-danger">Order</a>
                 </div>
             </div>
+            {% endfor %}
         </div>
 {% endblock %}
