@@ -4,6 +4,7 @@ from time import time
 
 from app import db
 
+
 # none of them can be null
 class Pharmacy(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -33,7 +34,7 @@ class Drug(db.Model):
     state = db.Column(db.String(140))
     prescription = db.Column(db.Boolean)
     refundation = db.Column(db.Integer)
-
+    prices = db.relationship('Price', backref='drug', lazy=True)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -42,16 +43,6 @@ class Drug(db.Model):
     def __repr__(self):
         return f'<Drug id: {self.id}, name: {self.name}, size: {self.size}, power: {self.power}, prescription: {self.prescription}, refundation: {self.refundation}>'
 
-# PRICES TABLE:
-# Is it supposed to be one table like this: (OPTION 1)
-prices = db.Table('prices',
-                    db.Column('drug_id', db.Integer, db.ForeignKey('drug.id'))
-                    db.Column('pharmacy_id', db.Integer, db.ForeignKey('pharmacy.id'))
-                    db.Column('price', db.Integer)
-                    db.Column('quantity_available', db.Integer)
-# 
-# Or is it better to do 3 columns with prices for each one from the 3 pharmacies (and then I have no idea how to conect the column with the corect pharmacy, but i gues it would be easier :P)?
-# Or for each pharmacy make table with: drug_id, drug_price, available_quantity? 
 
 class Client(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -68,6 +59,24 @@ class Client(db.Model):
 
     def __repr__(self):
         return f'<Pharmacy id: {self.id}, name: {self.name}, surname: {self.surname}, email: {self.adress}, phone: {self.phone}, address: {self.address}>'
+
+
+class Price(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    drug_id = db.Column(db.Integer, db.ForeignKey('drug.id'))
+    pharmacy_id = db.Column(db.Integer, db.ForeignKey('pharmacy.id'))
+    price = db.Column(db.Float)
+    quantity = db.Column(db.Integer)
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+ 
+
+    def __repr__(self):
+        return f'<Pharmacy id: {self.id}, name: {self.name}, surname: {self.surname}, email: {self.adress}, phone: {self.phone}, address: {self.address}>'
+
+
 
 # # not inicialized yet - not sure at all how it should working :/
 # order = db.Table('order',
