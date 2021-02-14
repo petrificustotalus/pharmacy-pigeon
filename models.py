@@ -26,7 +26,7 @@ class Pharmacy(db.Model):
 # power na 'ilość_czynnika_aktywnego' ang
 # state i refundation powinny być SELECT
 # none of them can be null
-class Drug(db.Model):
+class Druginfo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(140))
     size = db.Column(db.Integer)
@@ -34,7 +34,8 @@ class Drug(db.Model):
     state = db.Column(db.String(140))
     prescription = db.Column(db.Boolean)
     refundation = db.Column(db.Integer)
-    prices = db.relationship('Price', backref='drug', lazy=True)
+    drugitems = db.relationship('DrugItem', backref=db.backref('druginfo', lazy='joined'))
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -44,6 +45,21 @@ class Drug(db.Model):
         return f'<Drug id: {self.id}, name: {self.name}, size: {self.size}, power: {self.power}, prescription: {self.prescription}, refundation: {self.refundation}>'
 
 
+class DrugItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    druginfo_id = db.Column(db.Integer, db.ForeignKey('druginfo.id'))
+    pharmacy_id = db.Column(db.Integer, db.ForeignKey('pharmacy.id'))
+    price = db.Column(db.Float)
+    quantity = db.Column(db.Integer)
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+ 
+
+    def __repr__(self):
+        return f'<DrugItem id: {self.id}, druginfo id: {self.druginfo_id}, pharmacy id: {self.pharmacy_id}, price: {self.price}, quantity: {self.quantity}>'
+        
 class Client(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(140))    # not null
@@ -60,21 +76,6 @@ class Client(db.Model):
     def __repr__(self):
         return f'<Pharmacy id: {self.id}, name: {self.name}, surname: {self.surname}, email: {self.adress}, phone: {self.phone}, address: {self.address}>'
 
-
-class Price(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    drug_id = db.Column(db.Integer, db.ForeignKey('drug.id'))
-    pharmacy_id = db.Column(db.Integer, db.ForeignKey('pharmacy.id'))
-    price = db.Column(db.Float)
-    quantity = db.Column(db.Integer)
-
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
- 
-
-    def __repr__(self):
-        return f'<Pharmacy id: {self.id}, name: {self.name}, surname: {self.surname}, email: {self.adress}, phone: {self.phone}, address: {self.address}>'
 
 
 
