@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for
 from app import app, db
-from models import Drug
+from models import Druginfo, DrugItem
 from forms import SearchForm
 
 
@@ -20,5 +20,5 @@ def home():
 # searchresults route - localhost:5000/<slug>/
 @app.route("/search_results/<drugname>")
 def search_results(drugname):  # will take 'drugname'
-    drug = Drug.query.filter(Drug.name==drugname).first()
+    drug = Druginfo.query.filter(Druginfo.name==drugname).first()
     return render_template('search_results.html', drug=drug)
