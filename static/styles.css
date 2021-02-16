@@ -93,6 +93,14 @@
 
 /* search_results.html */
 
+.search-results-container-padding{
+    padding-top: 180px;
+}
+
 .bar-color{
     background-color: rgba(245, 192, 210, 0.75);
+}
+
+.card-mb{
+    margin-bottom: 15px;
 }
