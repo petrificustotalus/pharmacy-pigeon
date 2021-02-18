@@ -28,8 +28,8 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Dane zamawiającego</h5>
+            <div class="modal-header modal-header-color">
+                <h5 class="modal-title" id="exampleModalLabel">Wprowadź dane</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -100,54 +100,31 @@
                                 {{ form.address(class="form-control form-control-lg")}}
                             {% endif %}
                         </div>
+                        <div class="form-group">
+                            {{ form.quantity.label(class="form-control-label")}}
+                            {% if form.quantity.errors %}
+                                {{ form.quantity(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.quantity.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.quantity(class="form-control form-control-lg")}}
+                            {% endif %}
+                        </div>
+                        <div class="form-check">
+                            {{ form.prescription(class="form-check-input") }}
+                            {{ form.prescription.label(class="form-check-label") }}
+                        </div>
                     </fieldset>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
-                        {{ form.submit(class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#reservationModal") }} 
+                        {{ form.submit(class="btn btn-outline-danger") }} 
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-  
-  <!-- Reservation Modal -->
-  <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="reservationModalLabel">Potwierdź zamówienie</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <!-- tu trzeba będzie wyświetlić informacje o zamawianym leku -->
-            <form method="POST" action="">
-                <fieldset class="form-group">
-                    <div class="form-group">
-                        {{ reservation_form.quantity.label(class="form-control-label")}}
-                        {% if reservation_form.quantity.errors %}
-                            {{ reservation_form.quantity(class="form-control form-control-lg is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in reservation_form.quantity.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ reservation_form.quantity(class="form-control form-control-lg")}}
-                        {% endif %}
-                    </div>
-                    <div class="form-check">
-                        {{ reservation_form.prescription(class="form-check-input") }}
-                        {{ reservation_form.prescription.label(class="form-check-label") }}
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          {{ form.submit(class="btn btn-outline-danger") }}
-        </div>
-      </div>
-    </div>
-  </div>
 {% endblock %}
