@@ -17,6 +17,15 @@ def home():
     return render_template("home.jinja2", form=form)
 
 
+# def add_client(client):
+    # tu trzeba napisać funkcje która 
+    # 1 sprawdza czy dane nie pokrywają się z jakimś rekordem w bazie 
+    # 2 jeśli tak zwraca id tego klienta, jeśli nie - dodaje rekord do ClientTable i zwraca id tego nowego klienta
+
+# def add_order(client, order)
+    # ta funkcja ma tworzyć nowy rekord w tabeli orders przypisując go do klienta ^
+
+
 # searchresults route - localhost:5000/<slug>/
 @app.route("/search_results/<drugname>", methods=["POST", "GET"])
 def search_results(drugname):  # will take 'drugname'
