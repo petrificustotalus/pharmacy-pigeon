@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for
 from app import app, db
-from models import Druginfo, DrugItem, Client
+from models import Druginfo, DrugItem, Client, Pharmacy
 from forms import SearchForm, ClientDataForm
 
 

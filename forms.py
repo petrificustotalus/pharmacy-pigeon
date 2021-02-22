@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import Form, StringField, SubmitField, IntegerField, BooleanField
+from wtforms import Form, StringField, SubmitField, IntegerField, BooleanField, SelectField
 from wtforms.validators import DataRequired, Email
 
-class SearchForm(Form):
-    city = StringField('Miasto')
+class SearchForm(FlaskForm):
+    city = SelectField('Miasto', choices=['Białystok'])
     drugname = StringField('Nazwa leku')
 
 

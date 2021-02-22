@@ -15,6 +15,7 @@ class Pharmacy(db.Model):
     # that will be new separate table:
     adress = db.Column(db.String(140))
 
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -52,6 +53,7 @@ class DrugItem(db.Model):
     price = db.Column(db.Float)
     quantity = db.Column(db.Integer)
     orders = db.relationship("Order", backref="drugitem", lazy=True)
+    pharmacies = db.relationship("Pharmacy", backref=db.backref("drug_item", lazy="joined"))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
