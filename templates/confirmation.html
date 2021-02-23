@@ -1,0 +1,18 @@
+{% extends 'base.jinja2' %}
+
+{% block content %}
+    <div class="search-container-padding">
+        <div class="card">
+            <h5 class="card-header">Twoje zamówienie zostało zarezerwowane</h5>
+            <div class="card-body">
+                <h5 class="card-title">Zamówiłeś lek:</h5>
+                <p class="card-text">Tu będą wszystkie dane leku</p>
+                <h5 class="card-title mt-2">W aptece:</h5>
+                <p class="card-text">Tu będą wszystkie dane apteki</p>
+                <p class="card-text">Tu być może będzie kiedyś mapa z lokalizacją apteki</p>
+                <p class="card-text"><b>Rezerwacji dokonano {{ order.date_ordered }}. Lek pozostanie zarezerwowany w aptece przez kolejne 48h</b></p>
+                <a href="{{ url_for('home') }}" class="btn btn-danger">Przejdź do strony głównej</a>
+            </div>
+            </div>
+    </div>
+{% endblock %}

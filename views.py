@@ -46,4 +46,9 @@ def add_order(drugitem_id):
     order = Order(client_id=client.id, drugitem_id=drugitem_id)
     db.session.add(order)
     db.session.commit()
-    return redirect(url_for("home"))
+    return redirect(url_for("confirmation", order_id=order.id))
+
+@app.route("/confirmation/<order_id>")
+def confirmation(order_id):
+    order = Order.query.filter(Order.id == order_id)
+    return render_template("confirmation.html", order=order)
