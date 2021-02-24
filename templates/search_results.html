@@ -104,6 +104,13 @@
                                 {{ form.prescription(class="form-check-input") }}
                                 {{ form.prescription.label(class="form-check-label") }}
                             </div>
+                            <div class="form-check">
+                                {{ form.rodo(class="form-check-input") }}
+                                {{ form.rodo.label(class="form-check-label") }}
+                            </div>
+                            <div class="ms-4">
+                                <a href="{{ url_for('rodo') }}" target="_blank">Informacja o przetwarzaniu danych osobowych</a>
+                            </div>
                         </fieldset>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>

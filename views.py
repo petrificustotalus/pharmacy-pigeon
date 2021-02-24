@@ -58,3 +58,7 @@ def confirmation(order_id):
 @app.route("/error-page")
 def error_page():
     return render_template("error_page.html")
+
+@app.route("/informacja-o-przetwarzaniu-danych-osobowych")
+def rodo():
+    return render_template("rodo.html")
