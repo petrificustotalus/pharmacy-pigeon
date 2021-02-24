@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Email
 
 class SearchForm(FlaskForm):
     city = SelectField('Miasto', choices=['Białystok'])
-    drugname = StringField('Nazwa leku')
+    drugname = StringField('Nazwa leku', validators=[DataRequired()])
 
 
 class ClientDataForm(FlaskForm):

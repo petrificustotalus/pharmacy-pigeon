@@ -1,0 +1,8 @@
+{% extends 'base.jinja2' %}
+
+{% block content %}
+        <div class="search-container-padding text-center">
+            <h1 class="h1-padding">Wprowadzona nazwa leku jest nieprawidłowa lub wprowadzony lek jest obecnie niedostępny we wszystkich obsługiwanych aptekach. </h1>
+            <a href="{{ url_for('home') }}" class="btn btn-danger mt-3">Przejdź do strony głównej</a>
+        </div>
+{% endblock %}

@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from app import app, db
 from models import Druginfo, DrugItem, Client, Pharmacy, Order
 from forms import SearchForm, ClientDataForm
@@ -18,11 +18,13 @@ def home():
 
 # searchresults route - localhost:5000/<slug>/
 @app.route("/search_results/<drugname>", methods=["POST", "GET"])
-def search_results(drugname):  # will take 'drugname'
+def search_results(drugname):
     drug = Druginfo.query.filter(Druginfo.name == drugname).first()
     form = ClientDataForm()
-
-    return render_template("search_results.html", drug=drug, form=form)
+    if drug:
+        return render_template("search_results.html", drug=drug, form=form)
+    else:
+        return redirect(url_for('error_page'))
 
 
 @app.route("/order/<drugitem_id>", methods=["POST"])
@@ -50,5 +52,9 @@ def add_order(drugitem_id):
 
 @app.route("/confirmation/<order_id>")
 def confirmation(order_id):
-    order = Order.query.filter(Order.id == order_id)
+    order = Order.query.filter(Order.id == order_id).first()
     return render_template("confirmation.html", order=order)
+
+@app.route("/error-page")
+def error_page():
+    return render_template("error_page.html")
