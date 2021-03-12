@@ -20,8 +20,8 @@ def home():
 @app.route("/search_results/<drugname>", methods=["POST", "GET"])
 def search_results(drugname):
     drug = Druginfo.query.filter(Druginfo.name == drugname).first()
-    form = ClientDataForm()
     if drug:
+        form = ClientDataForm()
         return render_template("search_results.html", drug=drug, form=form)
     else:
         return redirect(url_for('error_page'))

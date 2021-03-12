@@ -14,7 +14,7 @@
                 drug.prescription }}
             </p>
             <p class="card-text">
-                Cena: {{ item.price }} zł
+                Cena: {{ "{:.2f}".format(item.price) }} zł
             </p>
             <button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm-{{item.id}}" aria-expanded="false" aria-controls="collapseForm-{{item.id}}">Zarezerwuj lek</button>
             <div class="collapse" id="collapseForm-{{item.id}}">
