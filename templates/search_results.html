@@ -1,4 +1,27 @@
 {% extends 'base.jinja2' %}
+
+{% block navbar %}
+<div class="navbar-search mt-3">
+    <div class="row">
+        {% for field in searchform %}
+            <div class="col">
+                <div class="d-inline">
+                    {{ field.label() }}
+                </div>
+                <div class="d-inline">
+                    {{ field(class="form-control") }}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="col ">
+            <div class="d-inline">
+                <button type="submit" class="btn btn-danger btn-search d-inline mt-4">Szukaj</button> 
+            </div>
+        </div>           
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
 <div class="search-results-container-padding">
     {% for item in drug.drugitems %}
