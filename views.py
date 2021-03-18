@@ -27,6 +27,12 @@ def search_results(drugname):
     else:
         return redirect(url_for('error_page'))
 
+@app.route("/search_results_update", methods=["POST"])
+def search_results_update():
+    form = SearchForm()
+    drugname = request.form.get("drugname")
+    return redirect(url_for("search_results", drugname=drugname))
+
 
 @app.route("/order/<drugitem_id>", methods=["POST"])
 def add_order(drugitem_id):

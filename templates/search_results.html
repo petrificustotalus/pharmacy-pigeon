@@ -2,23 +2,27 @@
 
 {% block navbar %}
 <div class="navbar-search mt-3">
-    <div class="row">
-        {% for field in searchform %}
-            <div class="col">
-                <div class="d-inline">
-                    {{ field.label() }}
+    <form method="POST" action="{{ url_for('search_results_update') }}">
+        <fieldset class="form-group">
+            <div class="row">
+                <div class="col navbar-col">
+                    <div class="d-inline">
+                        {{ searchform.city(class="form-control", placeholder="Miasto") }}
+                    </div>
                 </div>
-                <div class="d-inline">
-                    {{ field(class="form-control") }}
+                <div class="col navbar-col">
+                    <div class="d-inline">
+                        {{ searchform.drugname(class="form-control", placeholder="Nazwa leku") }}
+                    </div>
+                </div>
+                <div class="col ">
+                    <div class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-search d-inline">Szukaj</button> 
+                    </div>
                 </div>
             </div>
-        {% endfor %}
-        <div class="col ">
-            <div class="d-inline">
-                <button type="submit" class="btn btn-danger btn-search d-inline mt-4">Szukaj</button> 
-            </div>
-        </div>           
-    </div>
+        </fieldset>
+    </form>
 </div>
 {% endblock %}
 
