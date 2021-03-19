@@ -5,19 +5,13 @@ from forms import SearchForm, ClientDataForm
 
 
 # startpage route - localhost:5000/blog/
-@app.route("/", methods=["POST", "GET"])
+@app.route("/", methods=["GET"])
 def home():
     form = SearchForm()
-
-    if request.method == "POST":
-        # city = request.form.get('city')
-        drugname = request.form.get("drugname")
-        return redirect(url_for("search_results", drugname=drugname))
-
     return render_template("home.jinja2", form=form)
 
 # searchresults route - localhost:5000/<slug>/
-@app.route("/search_results/<drugname>", methods=["POST", "GET"])
+@app.route("/search_results/<drugname>", methods=["GET"])
 def search_results(drugname):
     drug = Druginfo.query.filter(Druginfo.name == drugname).first()
     searchform = SearchForm()
@@ -27,9 +21,8 @@ def search_results(drugname):
     else:
         return redirect(url_for('error_page'))
 
-@app.route("/search_results_update", methods=["POST"])
-def search_results_update():
-    form = SearchForm()
+@app.route("/search_results_redirection", methods=["POST"])
+def search_results_redirection():
     drugname = request.form.get("drugname")
     return redirect(url_for("search_results", drugname=drugname))
 

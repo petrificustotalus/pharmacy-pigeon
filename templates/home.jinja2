@@ -5,7 +5,7 @@
             <div class="homepage-search">
             <h1 class="h1-padding">Znajdź lek w swoim mieście</h1>
                 <div class="row">
-                    <form class="form-inline my-2 my-lg-0"  method="POST">
+                    <form class="form-inline my-2 my-lg-0"  method="POST" action="{{ url_for('search_results_redirection') }}">
                         {% for field in form %}
                             <div class="col", form-group">
                                 {{ field.label() }}
