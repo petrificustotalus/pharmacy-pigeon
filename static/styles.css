@@ -132,3 +132,9 @@ html {
 .btn-danger, .btn-danger:hover, .btn-danger:active, .btn-danger:visited {
     background-color: rgb(245, 106, 129) !important;
 }
+
+/* rodo.html */
+
+.simple-text-bg{
+    background-color: rgba(255, 255, 255, 0.5);
+}
