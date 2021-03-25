@@ -9,3 +9,7 @@ def db_clear():
     expiration_time = current_time - two_days
     orders_expired = Order.query.filter(Order.date_ordered <= expiration_time).all()
     print(orders_expired)
+    for order in orders_expired:
+        db.session.delete(order)
+        db.session.commit()
+    print(orders_expired)
