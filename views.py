@@ -3,10 +3,12 @@ from app import app, db, mail
 from models import Druginfo, DrugItem, Client, Pharmacy, Order
 from forms import SearchForm, ClientDataForm
 from flask_mail import Message
+from utils import db_clear
 
 
 @app.route("/", methods=["GET"])
 def home():
+    db_clear()
     form = SearchForm()
     return render_template("home.jinja2", form=form)
 
