@@ -32,7 +32,13 @@
     <div class="card card-mb">
         <div class="card-header bar-color">
             <!-- tu trzeba przekazać Pharmacy obiekt -->
-            <small><b>Nazwa apreki: </b>{{ item.pharmacies.name }} <b>Adres: </b>{{ item.pharmacies.adress }} <b>Tel: </b><u>{{ item.pharmacies.phone }}</u></small>
+            <small>
+                <b>Nazwa apreki: </b>{{ item.pharmacies.name }} <b>Adres: </b>{{ item.pharmacies.adress }} <b>Tel: </b>
+                <u>
+                    {% set phone =  item.pharmacies.phone|string %}
+                    {{ phone[:3] }}-{{ phone[3:6] }}-{{ phone[6:] }}
+                </u>
+            </small>
         </div>
         <div class="card-body">
             <h5 class="card-title">{{ drug.name }}</h5>
