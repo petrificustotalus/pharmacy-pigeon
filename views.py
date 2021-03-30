@@ -26,7 +26,7 @@ def search_results(drugname):
 # this route gets SearchForm, takes drugname from it, and pass it to search_results
 @app.route("/search_results_redirection", methods=["POST"])
 def search_results_redirection():
-    drugname = request.form.get("drugname")
+    drugname = request.form.get("drugname").lower()
     return redirect(url_for("search_results", drugname=drugname))
 
 @app.route("/order/<drugitem_id>", methods=["POST"])
