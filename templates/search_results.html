@@ -1,5 +1,11 @@
 {% extends 'base.jinja2' %}
 
+{% block head %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+{% endblock %}
+
 {% block navbar %}
 <div class="navbar-search mt-3">
     <form method="POST" action="{{ url_for('search_results_redirection') }}">
@@ -11,7 +17,7 @@
                     </div>
                 </div>
                 <div class="col navbar-col">
-                    <div class="d-inline">
+                    <div class="d-inline" id="js-autocomplete">
                         {{ searchform.drugname(class="form-control", placeholder="Nazwa leku") }}
                     </div>
                 </div>
@@ -156,4 +162,19 @@
     </div>
     {% endfor %}
 </div>
+{% endblock %}
+
+{% block script %}
+<script>
+function auto() {
+        $.ajax({
+            url: '{{ url_for("autocomplete") }}'
+            }).done(function (data){
+                $('#drugname_autocomplete').autocomplete({
+                    source: data,
+                    minLength: 1
+            });
+        });
+};
+</script>
 {% endblock %}

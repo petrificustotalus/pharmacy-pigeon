@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import Form, StringField, SubmitField, IntegerField, BooleanField, SelectField
+from wtforms import Form, StringField, SubmitField, IntegerField, BooleanField, SelectField, TextField
 from wtforms.validators import DataRequired, Email
 
 class SearchForm(FlaskForm):
     city = SelectField('Miasto', choices=['Białystok'])
-    drugname = StringField('Nazwa leku', validators=[DataRequired()])
+    drugname = TextField('Nazwa leku', validators=[DataRequired()], id='drugname_autocomplete')
 
 
 class ClientDataForm(FlaskForm):

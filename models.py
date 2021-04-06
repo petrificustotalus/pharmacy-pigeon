@@ -82,6 +82,7 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.Integer, db.ForeignKey("client.id"),  nullable=False)
     drugitem_id = db.Column(db.Integer, db.ForeignKey("drug_item.id"), nullable=False)
+    quantity = db.Column(db.Integer)
     date_ordered = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     def __init__(self, *args, **kwargs):

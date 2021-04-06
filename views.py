@@ -1,12 +1,19 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, Response
 from app import app, db, mail
 from models import Druginfo, DrugItem, Client, Pharmacy, Order
 from forms import SearchForm, ClientDataForm
 from flask_mail import Message
 from utils import db_clear
+import json
+
+drugs = ["Allertec", "Ketonal", "Ketoprofen"]
+
+@app.route('/_autocomplete', methods=['GET'])
+def autocomplete():
+    return Response(json.dumps(drugs), mimetype='application/json')
 
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET", "POST"])
 def home():
     db_clear()
     form = SearchForm()
@@ -37,6 +44,7 @@ def add_order(drugitem_id):
     email = request.form.get("email")
     phone = request.form.get("phone")
     address = request.form.get("address")
+    quantity = request.form.get("quantity")
 
     try:
         client = Client(
@@ -47,7 +55,7 @@ def add_order(drugitem_id):
     except:
         print("Very long traceback")
     # this part adds order to the order table
-    order = Order(client_id=client.id, drugitem_id=drugitem_id)
+    order = Order(client_id=client.id, drugitem_id=drugitem_id, quantity=quantity)
     db.session.add(order)
     db.session.commit()
     return redirect(url_for("confirmation", order_id=order.id))
