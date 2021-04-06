@@ -58,6 +58,12 @@ def add_order(drugitem_id):
     order = Order(client_id=client.id, drugitem_id=drugitem_id, quantity=quantity)
     db.session.add(order)
     db.session.commit()
+    # this part update drug quantity in drug_item table
+    drugitem = DrugItem.query.filter(DrugItem.id == drugitem_id).first()
+    old_quantity = DrugItem.quantity 
+    new_quantity = old_quantity - quantity
+    drugitem.quantity = new_quantity
+    db.session.commit()
     return redirect(url_for("confirmation", order_id=order.id))
 
 
