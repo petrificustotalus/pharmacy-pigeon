@@ -14,11 +14,16 @@ def db_clear():
     current_time = datetime.utcnow()
     expiration_time = current_time - two_days
     orders_expired = Order.query.filter(Order.date_ordered <= expiration_time).all()
-    print(orders_expired)
     for order in orders_expired:
         client = Client.query.filter(Client.id == order.client_id).first()
         email = client.email
         send_annulation(email)
         db.session.delete(order)
         db.session.commit()
-    print(orders_expired)
+        # increase drug quantity in drug_item table:
+        drugitem = DrugItem.query.filter(DrugItem.id == order.drugitem_id).first()
+        old_quantity = drugitem.quantity
+        new_quantity = old_quantity + order.quantity
+        drugitem.quantity = new_quantity
+        db.session.commit()
+

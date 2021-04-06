@@ -44,7 +44,7 @@ def add_order(drugitem_id):
     email = request.form.get("email")
     phone = request.form.get("phone")
     address = request.form.get("address")
-    quantity = request.form.get("quantity")
+    quantity = int(request.form.get("quantity"))
 
     try:
         client = Client(
@@ -60,7 +60,7 @@ def add_order(drugitem_id):
     db.session.commit()
     # this part update drug quantity in drug_item table
     drugitem = DrugItem.query.filter(DrugItem.id == drugitem_id).first()
-    old_quantity = DrugItem.quantity 
+    old_quantity = drugitem.quantity 
     new_quantity = old_quantity - quantity
     drugitem.quantity = new_quantity
     db.session.commit()
