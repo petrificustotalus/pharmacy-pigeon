@@ -19,12 +19,17 @@ def cart():
     if "cart" not in session:
         session["cart"] = []
 
-    if request.method == 'GET':
-        drugs = []
-        for id in session["cart"]:
-            drug = DrugItem.query.filter(DrugItem.id == id).first()
-            drugs.append(drug)
-        return render_template("cart.html", drugs=drugs)
+    if request.method == 'POST':
+        id = request.form.get("id")
+        if id:
+            session["cart"].append(id)
+        return redirect("/cart")
+    # GET:
+    drugs = []
+    for id in session["cart"]:
+        drug = DrugItem.query.filter(DrugItem.id == id).first()
+        drugs.append(drug)
+    return render_template("cart.html", drugs=drugs)
 
 @app.route("/", methods=["GET", "POST"])
 def home():

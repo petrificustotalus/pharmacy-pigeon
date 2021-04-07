@@ -55,6 +55,11 @@
             <p class="card-text">
                 Cena: {{ "{:.2f}".format(item.price) }} zł
             </p>
+            <!-- Tu należy dodać form z przyciskiem 'Dodaj lek do koszyka' -->
+            <form action="/cart" method="post">
+                <input name="id" type="hidden" value="{{ item.id }}">
+                <input class="btn btn-outline-danger" type="submit" value="Dodaj lek do koszyka">
+            </form>
             <button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm-{{item.id}}" aria-expanded="false" aria-controls="collapseForm-{{item.id}}">Zarezerwuj lek</button>
             <div class="collapse" id="collapseForm-{{item.id}}">
                 <div class="card card-body mt-3">
