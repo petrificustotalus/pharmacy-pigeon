@@ -1,7 +1,8 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
+from flask_session import Session
 
 from config import Config
 
@@ -15,5 +16,10 @@ app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = os.getenv('USER_EMAIL')
 app.config['MAIL_PASSWORD'] = os.getenv('PASSWORD_EMAIL')
 mail = Mail(app)
-
+# configure sessions:
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+# SESSION_SQLALCHEMY
+# SESSION_SQLALCHEMY_TABLE
 db = SQLAlchemy(app)

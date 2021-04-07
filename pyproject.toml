@@ -12,6 +12,7 @@ WTForms = "^2.3.3"
 Flask-WTF = "^0.14.3"
 email-validator = "^1.1.2"
 Flask-Mail = "^0.9.1"
+Flask-Session = "^0.3.2"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.6.0"
