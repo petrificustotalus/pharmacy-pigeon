@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash, Response
+from flask import render_template, request, redirect, url_for, flash, Response, session
 from app import app, db, mail
 from models import Druginfo, DrugItem, Client, Pharmacy, Order
 from forms import SearchForm, ClientDataForm
@@ -12,6 +12,19 @@ drugs = ["Allertec", "Ketonal", "Ketoprofen"]
 def autocomplete():
     return Response(json.dumps(drugs), mimetype='application/json')
 
+@app.route("/cart", methods=["GET", "POST"])
+def cart():
+
+    # Ensure cart exist:
+    if "cart" not in session:
+        session["cart"] = []
+
+    if request.method == 'GET':
+        drugs = []
+        for id in session["cart"]:
+            drug = DrugItem.query.filter(DrugItem.id == id).first()
+            drugs.append(drug)
+        return render_template("cart.html", drugs=drugs)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
