@@ -21,14 +21,19 @@ def cart():
 
     if request.method == 'POST':
         id = request.form.get("id")
-        if id:
-            session["cart"].append(id)
+        cart_item = {
+            'drug_id': id,
+            'quantity': 1
+        }
+        if cart_item:
+            session["cart"].append(cart_item)
         return redirect("/cart")
     # GET:
     drugs = []
-    for id in session["cart"]:
-        drug = DrugItem.query.filter(DrugItem.id == id).first()
-        drugs.append(drug)
+    for cart_item in session["cart"]:
+        drug = DrugItem.query.filter(DrugItem.id == cart_item["drug_id"]).first()
+        quantity = cart_item["quantity"]
+        drugs.append((drug, quantity))
     return render_template("cart.html", drugs=drugs)
 
 @app.route("/", methods=["GET", "POST"])
