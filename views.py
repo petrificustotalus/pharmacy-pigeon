@@ -21,12 +21,21 @@ def cart():
 
     if request.method == 'POST':
         id = request.form.get("id")
-        cart_item = {
-            'drug_id': id,
-            'quantity': 1
-        }
-        if cart_item:
-            session["cart"].append(cart_item)
+        # checking if same item is already in the cart:
+        all_drug_ids_in_cart = []
+        for cart_item in session["cart"]:
+            all_drug_ids_in_cart.append(cart_item["drug_id"])
+        if id in all_drug_ids_in_cart:
+            for cart_item in session["cart"]:
+                if cart_item['drug_id'] == id:
+                    cart_item['quantity'] += 1
+        else:
+            cart_item = {
+                'drug_id': id,
+                'quantity': 1
+            }
+            if cart_item:
+                session["cart"].append(cart_item)
         return redirect("/cart")
     # GET:
     drugs = []
