@@ -1,5 +1,31 @@
 {% extends 'base.jinja2' %}
 
+{% block navbar %}
+<div class="navbar-search mt-3">
+    <form method="POST" action="{{ url_for('search_results_redirection') }}">
+        <fieldset class="form-group">
+            <div class="row">
+                <div class="col navbar-col">
+                    <div class="d-inline">
+                        {{ searchform.city(class="form-control", placeholder="Miasto") }}
+                    </div>
+                </div>
+                <div class="col navbar-col">
+                    <div class="d-inline" id="js-autocomplete">
+                        {{ searchform.drugname(class="form-control", placeholder="Nazwa leku") }}
+                    </div>
+                </div>
+                <div class="col ">
+                    <div class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-search d-inline">Szukaj</button> 
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}
+
 {% block content %}
 <div class="search-results-container-padding">
     <h1>Koszyk</h1>
@@ -12,6 +38,10 @@
     <form action="/cart_increase" method="post">
         <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
         <input class="btn btn-outline-danger" type="submit" value="zwiększ ilość leku">
+    </form>
+    <form action="/cart_remove" method="post">
+        <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
+        <input class="btn btn-outline-danger" type="submit" value="usuń wszystko">
     </form>
     {% endfor %}
 </div>

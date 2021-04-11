@@ -42,6 +42,12 @@ def delete_cart_item(id):
         if cart_item['drug_id'] == id:
             session["cart"].remove(cart_item)
 
+@app.route("/cart_remove", methods=["POST"])
+def cart_remove():
+    id = request.form.get("id")
+    delete_cart_item(id)
+    return redirect(url_for("cart"))
+
 @app.route("/cart", methods=["GET", "POST"])
 def cart():
 
@@ -73,7 +79,8 @@ def cart():
         drug = DrugItem.query.filter(DrugItem.id == cart_item["drug_id"]).first()
         quantity = cart_item["quantity"]
         drugs.append((drug, quantity))
-    return render_template("cart.html", drugs=drugs)
+    searchform = SearchForm()
+    return render_template("cart.html", drugs=drugs, searchform=searchform)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
