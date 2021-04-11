@@ -20,6 +20,12 @@ def reduce_from_cart(id):
             else:
                 session["cart"].remove(cart_item)
 
+@app.route("/cart_reduce", methods=["POST"])
+def cart_reduce():
+    id = request.form.get("id")
+    reduce_from_cart(id)
+    return redirect(url_for("cart"))
+
 def increase_from_cart(id):
     for cart_item in session["cart"]:
         if cart_item['drug_id'] == id:

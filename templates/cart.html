@@ -3,6 +3,12 @@
 {% block content %}
 <div class="search-results-container-padding">
     <h1>Koszyk</h1>
-    <p>{{ drugs }}</p>
+    {% for drug in drugs %}
+    <p>{{ drug }}</p>
+    <form action="/cart_reduce" method="post">
+        <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
+        <input class="btn btn-outline-danger" type="submit" value="zmniejsz ilość leku">
+    </form>
+    {% endfor %}
 </div>
 {% endblock %}
