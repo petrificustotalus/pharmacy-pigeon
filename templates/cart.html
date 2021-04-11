@@ -9,6 +9,10 @@
         <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
         <input class="btn btn-outline-danger" type="submit" value="zmniejsz ilość leku">
     </form>
+    <form action="/cart_increase" method="post">
+        <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
+        <input class="btn btn-outline-danger" type="submit" value="zwiększ ilość leku">
+    </form>
     {% endfor %}
 </div>
 {% endblock %}

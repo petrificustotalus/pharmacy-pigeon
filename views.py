@@ -31,6 +31,12 @@ def increase_from_cart(id):
         if cart_item['drug_id'] == id:
             cart_item['quantity'] += 1
 
+@app.route("/cart_increase", methods=["POST"])
+def cart_increase():
+    id = request.form.get("id")
+    increase_from_cart(id)
+    return redirect(url_for("cart"))
+
 def delete_cart_item(id):
     for cart_item in session["cart"]:
         if cart_item['drug_id'] == id:
