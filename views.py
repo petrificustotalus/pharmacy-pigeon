@@ -57,6 +57,7 @@ def cart():
 
     if request.method == 'POST':
         id = request.form.get("id")
+        quantity = int(request.form.get("quantity"))
         # checking if same item is already in the cart:
         all_drug_ids_in_cart = []
         for cart_item in session["cart"]:
@@ -64,11 +65,11 @@ def cart():
         if id in all_drug_ids_in_cart:
             for cart_item in session["cart"]:
                 if cart_item['drug_id'] == id:
-                    cart_item['quantity'] += 1
+                    cart_item['quantity'] += quantity
         else:
             cart_item = {
                 'drug_id': id,
-                'quantity': 1
+                'quantity': quantity
             }
             if cart_item:
                 session["cart"].append(cart_item)

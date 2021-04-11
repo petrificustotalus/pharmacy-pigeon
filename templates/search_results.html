@@ -57,6 +57,9 @@
             </p>
             <!-- Tu należy dodać form z przyciskiem 'Dodaj lek do koszyka' -->
             <form action="/cart" method="post">
+                <div class="quantity buttons_added">
+                    <input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4"><input type="button" value="+" class="plus">
+                </div>
                 <input name="id" type="hidden" value="{{ item.id }}">
                 <input class="btn btn-outline-danger" type="submit" value="Dodaj lek do koszyka">
             </form>
