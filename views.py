@@ -85,7 +85,7 @@ def cart():
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    db_clear()
+    # db_clear()
     form = SearchForm()
     return render_template("home.jinja2", form=form)
 
