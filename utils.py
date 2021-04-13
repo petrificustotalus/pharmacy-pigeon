@@ -1,19 +1,17 @@
-from app import db, mail, scheduler
+from app import db, mail
 from models import Druginfo, DrugItem, Client, Pharmacy, Order
 from datetime import datetime, timedelta
 from time import time
 from flask_mail import Message
 
-# reservation_annulation_scheduler przeniosłam z app.py jak próbowałam ogarnąć zapentlone importy 
-
-def reservation_annulation_scheduler():
-    scheduler.add_job(id='Scheduled task', func = db_clear, trigger = 'interval', seconds = 60)
-    scheduler.start()
 
 def send_annulation(email):
-    msg = Message('Anulowano rezerwację', sender='natalka_nowak@tlen.pl ', recipients=[email])
-    msg.body = f''' Twoja rezerwacja leków została anulowana '''
+    msg = Message(
+        "Anulowano rezerwację", sender="natalka_nowak@tlen.pl ", recipients=[email]
+    )
+    msg.body = f""" Twoja rezerwacja leków została anulowana """
     mail.send(msg)
+
 
 def db_clear():
     two_days = timedelta(days=2)
@@ -33,5 +31,3 @@ def db_clear():
         new_quantity = old_quantity + order.quantity
         drugitem.quantity = new_quantity
         db.session.commit()
-    print("db_clear done")
-
