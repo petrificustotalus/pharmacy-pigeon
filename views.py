@@ -3,7 +3,6 @@ from app import app, db, mail
 from models import Druginfo, DrugItem, Client, Pharmacy, Order
 from forms import SearchForm, ClientDataForm
 from flask_mail import Message
-from utils import db_clear
 import json
 
 drugs = ["Allertec", "Ketonal", "Ketoprofen"]
@@ -85,7 +84,6 @@ def cart():
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    db_clear()
     form = SearchForm()
     return render_template("home.jinja2", form=form)
 
@@ -130,7 +128,7 @@ def add_order(drugitem_id):
     db.session.commit()
     # this part update drug quantity in drug_item table
     drugitem = DrugItem.query.filter(DrugItem.id == drugitem_id).first()
-    old_quantity = drugitem.quantity 
+    old_quantity = drugitem.quantity
     new_quantity = old_quantity - quantity
     drugitem.quantity = new_quantity
     db.session.commit()

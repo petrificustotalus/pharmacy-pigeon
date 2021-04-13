@@ -4,10 +4,14 @@ from datetime import datetime, timedelta
 from time import time
 from flask_mail import Message
 
+
 def send_annulation(email):
-    msg = Message('Anulowano rezerwację', sender='natalka_nowak@tlen.pl ', recipients=[email])
-    msg.body = f''' Twoja rezerwacja leków została anulowana '''
+    msg = Message(
+        "Anulowano rezerwację", sender="natalka_nowak@tlen.pl ", recipients=[email]
+    )
+    msg.body = f""" Twoja rezerwacja leków została anulowana """
     mail.send(msg)
+
 
 def db_clear():
     two_days = timedelta(days=2)
@@ -26,4 +30,3 @@ def db_clear():
         new_quantity = old_quantity + order.quantity
         drugitem.quantity = new_quantity
         db.session.commit()
-
