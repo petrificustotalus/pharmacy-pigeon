@@ -8,7 +8,7 @@ from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
-# app.config['SCHEDULER_API_ENABLED'] = True
+app.config['SCHEDULER_API_ENABLED'] = True
 app.config['SECRET_KEY'] = '32f0e62f7cba092e8707475e1f1a0c60'
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 587

@@ -16,7 +16,8 @@ def send_annulation(email):
 def db_clear():
     two_days = timedelta(days=2)
     current_time = datetime.utcnow()
-    expiration_time = current_time - two_days
+    # expiration_time = current_time - two_days
+    expiration_time = current_time
     orders_expired = Order.query.filter(Order.date_ordered <= expiration_time).all()
     for order in orders_expired:
         client = Client.query.filter(Client.id == order.client_id).first()
@@ -30,3 +31,4 @@ def db_clear():
         new_quantity = old_quantity + order.quantity
         drugitem.quantity = new_quantity
         db.session.commit()
+    print('clear')
