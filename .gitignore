@@ -28,3 +28,6 @@ flask_session/
 # Flask stuff:
 instance/
 .webassets-cache
+
+poetry.lock
+database.db
