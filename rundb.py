@@ -49,7 +49,7 @@ price6 = DrugItem(druginfo_id=2, pharmacy_id=3, price=4.99, quantity=3)
 # db.session.add(price6)
 
 
-# # db.session.commit()
+# db.session.commit()
 
 
 # # W przyszłości należy zrobić 3 pliki csv - dla każdego z plików zrobić for loop, deklarujący zmienną, dodający i zapisujący w bazie danych

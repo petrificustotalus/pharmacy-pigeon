@@ -84,6 +84,7 @@ class Order(db.Model):
     drugitem_id = db.Column(db.Integer, db.ForeignKey("drug_item.id"), nullable=False)
     quantity = db.Column(db.Integer)
     date_ordered = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    confirmation_send = db.Column(db.Boolean, nullable=False, default=0)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

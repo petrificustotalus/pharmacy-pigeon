@@ -5,6 +5,24 @@ from time import time
 from flask_mail import Message
 
 
+def send_confirmation(email):
+    msg = Message('Potwierdzenie dokonania rezerwacji', sender='natalka_nowak@tlen.pl ', recipients=[email])
+    msg.body = f''' Potwierdzenie rezerwacji leków '''
+    mail.send(msg)
+
+
+def db_confirm():
+    unconfirmed_orders = Order.query.filter(Order.confirmation_send == 0).all()
+    for order in unconfirmed_orders:
+        client = Client.query.filter(Client.id == order.client_id).first()
+        email = client.email
+        send_confirmation(email)
+        print("confirmation send")
+        order.confirmation_send = 1
+        db.session.commit()
+    print("db_confirm works")
+
+
 def send_annulation(email):
     msg = Message(
         "Anulowano rezerwację", sender="natalka_nowak@tlen.pl ", recipients=[email]
@@ -16,8 +34,7 @@ def send_annulation(email):
 def db_clear():
     two_days = timedelta(days=2)
     current_time = datetime.utcnow()
-    # expiration_time = current_time - two_days
-    expiration_time = current_time
+    expiration_time = current_time - two_days
     orders_expired = Order.query.filter(Order.date_ordered <= expiration_time).all()
     for order in orders_expired:
         client = Client.query.filter(Client.id == order.client_id).first()
@@ -31,4 +48,3 @@ def db_clear():
         new_quantity = old_quantity + order.quantity
         drugitem.quantity = new_quantity
         db.session.commit()
-    print('clear')

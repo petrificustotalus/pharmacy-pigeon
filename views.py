@@ -135,17 +135,9 @@ def add_order(drugitem_id):
     return redirect(url_for("confirmation", order_id=order.id))
 
 
-def send_confirmation(email):
-    msg = Message('Potwierdzenie dokonania rezerwacji', sender='natalka_nowak@tlen.pl ', recipients=[email])
-    msg.body = f''' Potwierdzenie rezerwacji leków '''
-    mail.send(msg)
-
 @app.route("/confirmation/<order_id>")
 def confirmation(order_id):
     order = Order.query.filter(Order.id == order_id).first()
-    client = Client.query.filter(Client.id == order.client_id).first()
-    email = client.email
-    send_confirmation(email)
     return render_template("confirmation.html", order=order)
 
 @app.route("/error-page")
