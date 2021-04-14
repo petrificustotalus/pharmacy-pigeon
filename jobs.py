@@ -17,10 +17,8 @@ def db_confirm():
         client = Client.query.filter(Client.id == order.client_id).first()
         email = client.email
         send_confirmation(email)
-        print("confirmation send")
         order.confirmation_send = 1
         db.session.commit()
-    print("db_confirm works")
 
 
 def send_annulation(email):

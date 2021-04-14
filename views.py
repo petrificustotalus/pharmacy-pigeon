@@ -80,7 +80,8 @@ def cart():
         quantity = cart_item["quantity"]
         drugs.append((drug, quantity))
     searchform = SearchForm()
-    return render_template("cart.html", drugs=drugs, searchform=searchform)
+    form = ClientDataForm()
+    return render_template("cart.html", drugs=drugs, form=form, searchform=searchform)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -104,6 +105,20 @@ def search_results_redirection():
     drugname = request.form.get("drugname").lower()
     return redirect(url_for("search_results", drugname=drugname))
 
+
+def special_order_number_generator():
+    order_number = 100000
+    while order_number < 1000000:
+        yield order_number
+        order_number += 1
+    # sprawdzić czy da się if order_number < 100000:
+    # yield order_number
+    # order_number += 1
+    # else:
+    # order_number = 100000
+
+g = special_order_number_generator()
+
 @app.route("/order/<drugitem_id>", methods=["POST"])
 def add_order(drugitem_id):
     # this part adds new client to Client table (it supposed to verify if the client doesn't already exist)
@@ -113,6 +128,7 @@ def add_order(drugitem_id):
     phone = request.form.get("phone")
     address = request.form.get("address")
     quantity = int(request.form.get("quantity"))
+    special_order_number = next(g)
 
     try:
         client = Client(
@@ -123,7 +139,7 @@ def add_order(drugitem_id):
     except:
         print("Very long traceback")
     # this part adds order to the order table
-    order = Order(client_id=client.id, drugitem_id=drugitem_id, quantity=quantity)
+    order = Order(client_id=client.id, drugitem_id=drugitem_id, quantity=quantity, special_order_number=special_order_number)
     db.session.add(order)
     db.session.commit()
     # this part update drug quantity in drug_item table

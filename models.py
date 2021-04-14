@@ -83,6 +83,7 @@ class Order(db.Model):
     client_id = db.Column(db.Integer, db.ForeignKey("client.id"),  nullable=False)
     drugitem_id = db.Column(db.Integer, db.ForeignKey("drug_item.id"), nullable=False)
     quantity = db.Column(db.Integer)
+    special_order_number = db.Column(db.Integer, nullable=False)
     date_ordered = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     confirmation_send = db.Column(db.Boolean, nullable=False, default=0)
 
