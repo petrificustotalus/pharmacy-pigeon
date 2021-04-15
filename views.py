@@ -148,13 +148,43 @@ def add_order(drugitem_id):
     new_quantity = old_quantity - quantity
     drugitem.quantity = new_quantity
     db.session.commit()
-    return redirect(url_for("confirmation", order_id=order.id))
+    return redirect(url_for("confirmation", special_order_number=special_order_number))
 
 
-@app.route("/confirmation/<order_id>")
-def confirmation(order_id):
-    order = Order.query.filter(Order.id == order_id).first()
-    return render_template("confirmation.html", order=order)
+@app.route("/cart_orders_adding", methods=["POST"])
+def add_cart_orders():
+    # this part adds new client to Client table (it supposed to verify if the client doesn't already exist)
+    name = request.form.get("name")
+    surname = request.form.get("surname")
+    email = request.form.get("email")
+    phone = request.form.get("phone")
+    address = request.form.get("address")
+    special_order_number = next(g)
+
+    try:
+        client = Client(
+            name=name, surname=surname, email=email, phone=phone, address=address
+        )
+        db.session.add(client)
+        db.session.commit()
+    except:
+        print("Very long traceback")
+
+    # this part adds order to the orders table
+    for cart_item in session["cart"]:
+        drugitem_id = cart_item['drug_id']
+        quantity = cart_item['quantity']
+        order = Order(client_id=client.id, drugitem_id=drugitem_id, quantity=quantity, special_order_number=special_order_number)
+        db.session.add(order)
+        db.session.commit()
+        # update_drug_quantity()
+    return redirect(url_for("confirmation", special_order_number=special_order_number))
+    
+
+@app.route("/confirmation/<special_order_number>")
+def confirmation(special_order_number):
+    orders = Order.query.filter(Order.special_order_number == special_order_number).all()
+    return render_template("confirmation.html", orders=orders)
 
 @app.route("/error-page")
 def error_page():
