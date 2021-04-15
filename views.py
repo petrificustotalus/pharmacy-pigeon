@@ -119,6 +119,13 @@ def special_order_number_generator():
 
 g = special_order_number_generator()
 
+def update_drug_quantity(drugitem_id, quantity):
+    drugitem = DrugItem.query.filter(DrugItem.id == drugitem_id).first()
+    old_quantity = drugitem.quantity
+    new_quantity = old_quantity - quantity
+    drugitem.quantity = new_quantity
+    db.session.commit()
+
 @app.route("/order/<drugitem_id>", methods=["POST"])
 def add_order(drugitem_id):
     # this part adds new client to Client table (it supposed to verify if the client doesn't already exist)
@@ -143,11 +150,7 @@ def add_order(drugitem_id):
     db.session.add(order)
     db.session.commit()
     # this part update drug quantity in drug_item table
-    drugitem = DrugItem.query.filter(DrugItem.id == drugitem_id).first()
-    old_quantity = drugitem.quantity
-    new_quantity = old_quantity - quantity
-    drugitem.quantity = new_quantity
-    db.session.commit()
+    update_drug_quantity(drugitem_id, quantity)
     return redirect(url_for("confirmation", special_order_number=special_order_number))
 
 
@@ -177,7 +180,7 @@ def add_cart_orders():
         order = Order(client_id=client.id, drugitem_id=drugitem_id, quantity=quantity, special_order_number=special_order_number)
         db.session.add(order)
         db.session.commit()
-        # update_drug_quantity()
+        update_drug_quantity(drugitem_id, quantity)
     return redirect(url_for("confirmation", special_order_number=special_order_number))
     
 
