@@ -28,6 +28,13 @@ def send_annulation(email):
     msg.body = f""" Twoja rezerwacja leków została anulowana """
     mail.send(msg)
 
+def increase_quantity(drugitem_id, quantity):
+    drugitem = DrugItem.query.filter(DrugItem.id == drugitem_id).first()
+    old_quantity = drugitem.quantity
+    new_quantity = old_quantity + quantity
+    drugitem.quantity = new_quantity
+    db.session.commit()
+
 
 def db_clear():
     two_days = timedelta(days=2)
@@ -41,8 +48,4 @@ def db_clear():
         db.session.delete(order)
         db.session.commit()
         # increase drug quantity in drug_item table:
-        drugitem = DrugItem.query.filter(DrugItem.id == order.drugitem_id).first()
-        old_quantity = drugitem.quantity
-        new_quantity = old_quantity + order.quantity
-        drugitem.quantity = new_quantity
-        db.session.commit()
+        increase_quantity(order.drugitem_id, order.quantity)
