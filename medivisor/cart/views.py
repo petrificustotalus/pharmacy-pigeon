@@ -1,17 +1,9 @@
 from flask import Blueprint, request, redirect, url_for, session, render_template
 from ..forms import SearchForm, ClientDataForm
 from ..models import DrugItem
+from .services.cart_service import reduce_from_cart, increase_from_cart, delete_cart_item
 
 cart = Blueprint('cart', __name__)
-
-
-def reduce_from_cart(id):
-    for cart_item in session["cart"]:
-        if cart_item['drug_id'] == id:
-            if cart_item['quantity'] > 1:
-                cart_item['quantity'] -= 1
-            else:
-                session["cart"].remove(cart_item)
 
 @cart.route("/cart_reduce", methods=["POST"])
 def cart_reduce():
@@ -19,10 +11,6 @@ def cart_reduce():
     reduce_from_cart(id)
     return redirect(url_for("cart.mycart"))
 
-def increase_from_cart(id):
-    for cart_item in session["cart"]:
-        if cart_item['drug_id'] == id:
-            cart_item['quantity'] += 1
 
 @cart.route("/cart_increase", methods=["POST"])
 def cart_increase():
@@ -30,16 +18,13 @@ def cart_increase():
     increase_from_cart(id)
     return redirect(url_for("cart.mycart"))
 
-def delete_cart_item(id):
-    for cart_item in session["cart"]:
-        if cart_item['drug_id'] == id:
-            session["cart"].remove(cart_item)
 
 @cart.route("/cart_remove", methods=["POST"])
 def cart_remove():
     id = request.form.get("id")
     delete_cart_item(id)
     return redirect(url_for("cart.mycart"))
+
 
 @cart.route("/cart", methods=["GET", "POST"])
 def mycart():
