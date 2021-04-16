@@ -1,5 +1,5 @@
-from app import db, mail
-from models import Druginfo, DrugItem, Client, Pharmacy, Order
+from medivisor import db, mail
+from medivisor.models import Druginfo, DrugItem, Client, Pharmacy, Order
 from datetime import datetime, timedelta
 from time import time
 from flask_mail import Message
