@@ -1,10 +1,10 @@
 # skrypt tworzący bazę danych od 0
 # to nie jest część projektu
-from app import db
+from medivisor import db
 
-from models import *
+from medivisor.models import *
 
-# db.create_all()
+db.create_all()
 
 # # Apteki
 p1 = Pharmacy(name='Super Pharmacy', phone=777666555, adress="ul. Młynowa 60")
@@ -31,22 +31,22 @@ price4 = DrugItem(druginfo_id=2, pharmacy_id=1, price=3.46, quantity=10)
 price5 = DrugItem(druginfo_id=2, pharmacy_id=2, price=5.04, quantity=112)
 price6 = DrugItem(druginfo_id=2, pharmacy_id=3, price=4.99, quantity=3)
 
-# db.session.add(p1)
-# db.session.add(p2)
-# db.session.add(p3)
+db.session.add(p1)
+db.session.add(p2)
+db.session.add(p3)
 
-# db.session.add(d)
-# db.session.add(d1)
-# db.session.add(d2)
-# db.session.add(d3)
-# db.session.add(d4)
+db.session.add(d)
+db.session.add(d1)
+db.session.add(d2)
+db.session.add(d3)
+db.session.add(d4)
 
-# db.session.add(price1)
-# db.session.add(price2)
-# db.session.add(price3)
-# db.session.add(price4)
-# db.session.add(price5)
-# db.session.add(price6)
+db.session.add(price1)
+db.session.add(price2)
+db.session.add(price3)
+db.session.add(price4)
+db.session.add(price5)
+db.session.add(price6)
 
 
 # db.session.commit()
@@ -56,4 +56,4 @@ price6 = DrugItem(druginfo_id=2, pharmacy_id=3, price=4.99, quantity=3)
 
 # p4 = Pharmacy(name='Zaczptek', phone=777676666, adress="ul. Zamkowa 28")
 # db.session.add(p4)
-# db.session.commit()
+db.session.commit()

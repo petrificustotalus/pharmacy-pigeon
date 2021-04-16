@@ -10,7 +10,11 @@
                 <h5 class="card-title mt-2">W aptece:</h5>
                 <p class="card-text">Tu będą wszystkie dane apteki</p>
                 <p class="card-text">Tu być może będzie kiedyś mapa z lokalizacją apteki</p>
-                <p class="card-text"><b>Rezerwacji dokonano {{ orders[0].date_ordered }}. Lek pozostanie zarezerwowany w aptece przez kolejne 48h</b></p>
+                <p class="card-text"><b>Rezerwacji dokonano {{ order.date_ordered }}. Lek pozostanie zarezerwowany w aptece przez kolejne 48h</b></p>
+                <p class="card-text">Do twojego zamówienia należą następujące leki:</p>
+                {% for item in order.orders_items %}
+                {{ item }}
+                {% endfor %}
                 <a href="{{ url_for('home') }}" class="btn btn-danger">Przejdź do strony głównej</a>
             </div>
             </div>
