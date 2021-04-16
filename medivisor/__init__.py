@@ -23,3 +23,5 @@ Session(app)
 db = SQLAlchemy(app)
 
 from medivisor import views
+from medivisor.cart.views import cart
+app.register_blueprint(cart)
