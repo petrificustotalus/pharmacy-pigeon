@@ -37,7 +37,7 @@ def increase_quantity(drugitem_id, quantity):
 
 
 def db_clear():
-    two_days = timedelta(days=2)
+    two_days = timedelta(days=0)
     current_time = datetime.utcnow()
     expiration_time = current_time - two_days
     orders_expired = Order.query.filter(Order.date_ordered <= expiration_time).all()
@@ -45,7 +45,8 @@ def db_clear():
         client = Client.query.filter(Client.id == order.client_id).first()
         email = client.email
         send_annulation(email)
-        db.session.delete(order)
+        order.expired = 1
         db.session.commit()
         # increase drug quantity in drug_item table:
-        increase_quantity(order.drugitem_id, order.quantity)
+        for item in order.orders_items:
+            increase_quantity(item.drugitem_id, item.quantity)

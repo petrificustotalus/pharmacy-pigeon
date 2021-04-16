@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     # Scheduler add
     scheduler.start()
-    # scheduler.add_job(id='clear DB', func = scheduler_db_clear, trigger = 'interval', seconds = 1200)
+    # scheduler.add_job(id='clear DB', func = scheduler_db_clear, trigger = 'interval', seconds = 3600)
     # scheduler.add_job(id='confirm orders', func = scheduler_db_confirm, trigger = 'interval', seconds = 60)
 
     # Start whole app
