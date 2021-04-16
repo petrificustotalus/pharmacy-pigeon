@@ -3,7 +3,7 @@ from sqlalchemy import *
 from datetime import datetime
 from time import time
 
-from app import db
+from medivisor import db
 
 
 # none of them can be null

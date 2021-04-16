@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash, Response, session
-from app import app, db, mail
-from models import Druginfo, DrugItem, Client, Pharmacy, Order
-from forms import SearchForm, ClientDataForm
+from medivisor import app, db, mail
+from medivisor.models import Druginfo, DrugItem, Client, Pharmacy, Order
+from medivisor.forms import SearchForm, ClientDataForm
 from flask_mail import Message
 import json
 

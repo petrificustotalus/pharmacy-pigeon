@@ -1,8 +1,8 @@
-from app import app
+from medivisor import app
 from flask_apscheduler import APScheduler
 from jobs import db_clear, db_confirm
 
-import views
+from medivisor import views
 
 def scheduler_db_clear():
     with scheduler.app.app_context():
@@ -19,8 +19,8 @@ if __name__ == "__main__":
 
     # Scheduler add
     scheduler.start()
-    # scheduler.add_job(id='clear DB', func = scheduler_db_clear, trigger = 'interval', seconds = 1200)
-    # scheduler.add_job(id='confirm orders', func = scheduler_db_confirm, trigger = 'interval', seconds = 60)
+    scheduler.add_job(id='clear DB', func = scheduler_db_clear, trigger = 'interval', seconds = 1200)
+    scheduler.add_job(id='confirm orders', func = scheduler_db_confirm, trigger = 'interval', seconds = 60)
 
     # Start whole app
     app.run()
