@@ -15,7 +15,8 @@ def cart_reduce():
 @cart.route("/cart_increase", methods=["POST"])
 def cart_increase():
     id = request.form.get("id")
-    increase_from_cart(id)
+    drugitem = DrugItem.query.filter(DrugItem.id == id).first()
+    increase_from_cart(id, drugitem.quantity)
     return redirect(url_for("cart.mycart"))
 
 

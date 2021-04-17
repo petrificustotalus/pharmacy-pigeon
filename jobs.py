@@ -37,7 +37,7 @@ def increase_quantity(drugitem_id, quantity):
 
 
 def db_clear():
-    two_days = timedelta(days=0)
+    two_days = timedelta(days=2)
     current_time = datetime.utcnow()
     expiration_time = current_time - two_days
     orders_expired = Order.query.filter(Order.date_ordered <= expiration_time).all()

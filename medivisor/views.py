@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash, Response, session
+from flask import render_template, request, redirect, url_for, flash, Response, session, flash
 from medivisor import app, db
 from medivisor.models import Druginfo, DrugItem, Client, Pharmacy, Order, OrderItem
 from medivisor.forms import SearchForm, ClientDataForm
@@ -49,26 +49,32 @@ def add_order(drugitem_id):
     phone = request.form.get("phone")
     address = request.form.get("address")
     quantity = int(request.form.get("quantity"))
+    drugitem = DrugItem.query.filter(DrugItem.id == drugitem_id).first()
+    drugname = Druginfo.query.filter(Druginfo.id == drugitem.druginfo_id).first().name
 
-    try:
-        client = Client(
-            name=name, surname=surname, email=email, phone=phone, address=address
-        )
-        db.session.add(client)
+    if quantity <= drugitem.quantity:
+        try:
+            client = Client(
+                name=name, surname=surname, email=email, phone=phone, address=address
+            )
+            db.session.add(client)
+            db.session.commit()
+        except:
+            print("Very long traceback")
+        # this part adds order to the order table
+        order = Order(client_id=client.id)
+        db.session.add(order)
         db.session.commit()
-    except:
-        print("Very long traceback")
-    # this part adds order to the order table
-    order = Order(client_id=client.id)
-    db.session.add(order)
-    db.session.commit()
-    # this part adds order item to order
-    order_item = OrderItem(drugitem_id=drugitem_id, quantity=quantity, order_id=order.id)
-    db.session.add(order_item)
-    db.session.commit()
-    # this part update drug quantity in drug_item table
-    update_drug_quantity(drugitem_id, quantity)
-    return redirect(url_for("confirmation", order_id=order.id))
+        # this part adds order item to order
+        order_item = OrderItem(drugitem_id=drugitem_id, quantity=quantity, order_id=order.id)
+        db.session.add(order_item)
+        db.session.commit()
+        # this part update drug quantity in drug_item table
+        update_drug_quantity(drugitem_id, quantity)
+        return redirect(url_for("confirmation", order_id=order.id))
+    else:
+        flash(f'W wybranej aptece dostępnych jest jedynie {drugitem.quantity} sztuk tego leku. Wprowadź mniejszą liczbę opakowań lub dokonaj zamówienia w innej aptece.', 'danger')
+    return redirect(url_for("search_results", drugname=drugname))
 
 
 @app.route("/cart_orders_adding", methods=["POST"])
