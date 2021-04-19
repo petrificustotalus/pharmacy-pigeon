@@ -53,7 +53,7 @@
         <div class="collapse" id="collapseForm">
             <div class="card card-body mt-3">
                 <h5 class="card-title">Wprowadź dane</h5>
-                <form method="POST" action="{{ url_for('add_cart_orders') }}">
+                <form method="POST" action="{{ url_for('order.add_cart_orders') }}">
                     <fieldset class="form-group">
                         <div class="form-group">
                             {{ form.name.label(class="form-control-label")}}

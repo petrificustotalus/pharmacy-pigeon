@@ -24,4 +24,6 @@ db = SQLAlchemy(app)
 
 from medivisor import views
 from medivisor.cart.views import cart
+from medivisor.order.views import order
 app.register_blueprint(cart)
+app.register_blueprint(order)
