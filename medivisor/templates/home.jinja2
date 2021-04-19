@@ -6,12 +6,14 @@
             <h1 class="h1-padding">Znajdź lek w swoim mieście</h1>
                 <div class="row">
                     <form class="form-inline my-2 my-lg-0"  method="POST" action="{{ url_for('search_results_redirection') }}">
-                        {% for field in form %}
-                            <div class="col", form-group">
-                                {{ field.label() }}
-                                {{ field(class="form-control") }}
-                            </div>
-                        {% endfor %}
+                        <div class="col", form-group>
+                            {{ form.city.label() }}
+                            {{ form.city(class="form-control", placeholder="Miasto") }}
+                        </div>
+                        <div class="col", form-group>
+                            {{ form.drugname.label() }}
+                            {{ form.drugname(class="form-control") }}
+                        </div>
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-danger btn-search">Szukaj</button>
                         </div>
