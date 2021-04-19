@@ -11,12 +11,12 @@
     <form method="POST" action="{{ url_for('search_results_redirection') }}">
         <fieldset class="form-group">
             <div class="row">
-                <div class="col navbar-col">
+                <div class="col navbar-col mt-2">
                     <div class="d-inline">
                         {{ searchform.city(class="form-control", placeholder="Miasto") }}
                     </div>
                 </div>
-                <div class="col navbar-col">
+                <div class="col navbar-col mt-2">
                     <div class="d-inline" id="js-autocomplete">
                         {{ searchform.drugname(class="form-control", placeholder="Nazwa leku") }}
                     </div>
@@ -49,21 +49,21 @@
         <div class="card-body">
             <h5 class="card-title">{{ drug.name }}</h5>
             <p class="card-text">
-                Ilość: {{ drug.size }}, Moc: {{ drug.power }}, Refundacja: {{ drug.refundation }}%, Na receptę: {{
-                drug.prescription }}
+                Ilość: {{ drug.size }}, Moc: {{ drug.power }}, Refundacja: {{ drug.refundation }}%, Na receptę: {%
+                if drug.prescription == False %} Nie {% endif %}{% if drug.prescription == True %} Tak {% endif %}
             </p>
             <p class="card-text">
                 Cena: {{ "{:.2f}".format(item.price) }} zł
             </p>
             <!-- Tu należy dodać form z przyciskiem 'Dodaj lek do koszyka' -->
             <form action="/cart" method="post">
-                <div class="quantity buttons_added">
-                    <input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="{{ item.quantity }}" name="quantity" value="1" title="Qty" class="input-text qty text" size="4"><input type="button" value="+" class="plus">
+                <div class="quantity buttons_added d-inline">
+                    <input type="number" step="1" min="1" max="{{ item.quantity }}" name="quantity" value="1" title="Qty" class="input-text qty text" size="4">
                 </div>
                 <input name="id" type="hidden" value="{{ item.id }}">
-                <input class="btn btn-outline-danger" type="submit" value="Dodaj lek do koszyka">
+                <input class="btn btn-sm btn-outline-danger d-inline" type="submit" value="Dodaj lek do koszyka">
             </form>
-            <button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm-{{item.id}}" aria-expanded="false" aria-controls="collapseForm-{{item.id}}">Zarezerwuj lek</button>
+            <button class="btn btn-danger my-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm-{{item.id}}" aria-expanded="false" aria-controls="collapseForm-{{item.id}}">Zarezerwuj lek</button>
             <div class="collapse" id="collapseForm-{{item.id}}">
                 <div class="card card-body mt-3">
                     <h5 class="card-title">Wprowadź dane</h5>

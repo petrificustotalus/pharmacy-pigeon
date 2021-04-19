@@ -5,12 +5,12 @@
     <form method="POST" action="{{ url_for('search_results_redirection') }}">
         <fieldset class="form-group">
             <div class="row">
-                <div class="col navbar-col">
+                <div class="col navbar-col mt-2">
                     <div class="d-inline">
                         {{ searchform.city(class="form-control", placeholder="Miasto") }}
                     </div>
                 </div>
-                <div class="col navbar-col">
+                <div class="col navbar-col mt-2">
                     <div class="d-inline" id="js-autocomplete">
                         {{ searchform.drugname(class="form-control", placeholder="Nazwa leku") }}
                     </div>

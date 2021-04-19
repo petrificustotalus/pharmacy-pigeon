@@ -6,11 +6,11 @@
             <h1 class="h1-padding">Znajdź lek w swoim mieście</h1>
                 <div class="row">
                     <form class="form-inline my-2 my-lg-0"  method="POST" action="{{ url_for('search_results_redirection') }}">
-                        <div class="col", form-group>
+                        <div class="col mb-1", form-group>
                             {{ form.city.label() }}
                             {{ form.city(class="form-control", placeholder="Miasto") }}
                         </div>
-                        <div class="col", form-group>
+                        <div class="col mb-1", form-group>
                             {{ form.drugname.label() }}
                             {{ form.drugname(class="form-control") }}
                         </div>

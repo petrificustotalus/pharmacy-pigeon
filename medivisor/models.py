@@ -82,6 +82,7 @@ class OrderItem(db.Model):
     drugitem_id = db.Column(db.Integer, db.ForeignKey("drug_item.id"), nullable=False)
     quantity = db.Column(db.Integer)
     order_id = db.Column(db.Integer, db.ForeignKey("order.id"),  nullable=False)
+    drug_item = db.relationship("DrugItem", backref="orderitem", lazy=True)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
