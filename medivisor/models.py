@@ -14,6 +14,7 @@ class Pharmacy(db.Model):
     phone = db.Column(db.Integer)
     # that will be new separate table:
     adress = db.Column(db.String(140))
+    open_hours = db.Column(db.String(140))
 
 
     def __init__(self, *args, **kwargs):

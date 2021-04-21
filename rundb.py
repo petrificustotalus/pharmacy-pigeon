@@ -7,9 +7,9 @@ from medivisor.models import *
 db.create_all()
 
 # # Apteki
-p1 = Pharmacy(name='Super Pharmacy', phone=777666555, adress="ul. Młynowa 60")
-p2 = Pharmacy(name='New Pharmacy', phone=777666554, adress="ul. Młynowa 61")
-p3 = Pharmacy(name='Extra Pharmacy', phone=777666553, adress="ul. Młynowa 62")
+p1 = Pharmacy(name='Super Pharmacy', phone=777666555, adress="ul. Młynowa 60", open_hours="10:00-22:00")
+p2 = Pharmacy(name='New Pharmacy', phone=777666554, adress="ul. Młynowa 61", open_hours="7:00-22:00")
+p3 = Pharmacy(name='Extra Pharmacy', phone=777666553, adress="ul. Młynowa 62", open_hours="7:00-00:00")
 
 # Usuwanie item:
 # drug1 = DrugItem.query.filter(DrugItem.id == 1).first()

@@ -9,7 +9,7 @@
         {% endblock %}
     </head>
     <body>
-        <!-- NAVBAR -->
+    <!-- NAVBAR -->
         <nav class="navbar navbar-inner navbar-expand-sm navbar-dark bg-main-color fixed-top">
             <div class="container">
                 <a href="{{ url_for('home') }}" class="navbar-brand mt-4">Medivisor</a>
@@ -36,16 +36,16 @@
                 {% endblock %}
 
                 </div>
+                <!--FOOTER -->
+                <footer class="my-footer">
+                    <div class="wrapper">
+                        <div class="container">
+                            <p class="inline-element mt-1">© 2021 | Natalia Nowak </p>
+                        </div>     
+                    </div>
+                </footer>
             </div>
         </div>
-        <!--FOOTER -->
-        <footer class="my-footer">
-            <div class="wrapper">
-                <div class="container">
-                    <p class="inline-element mt-1">© 2021 | Natalia Nowak </p>
-                </div>     
-            </div>
-        </footer>
 
         {% block script %}
         {% endblock %}

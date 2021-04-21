@@ -39,11 +39,8 @@
         <div class="card-header bar-color">
             <!-- tu trzeba przekazać Pharmacy obiekt -->
             <small>
-                <b>Nazwa apreki: </b>{{ item.pharmacies.name }} <b>Adres: </b>{{ item.pharmacies.adress }} <b>Tel: </b>
-                <u>
-                    {% set phone =  item.pharmacies.phone|string %}
-                    {{ phone[:3] }}-{{ phone[3:6] }}-{{ phone[6:] }}
-                </u>
+                <b>Nazwa apreki: </b>{{ item.pharmacies.name }} <b>Adres: </b>{{ item.pharmacies.adress }} <b>Godziny otwarcia: </b>
+                <u>{{ item.pharmacies.open_hours }}</u>
             </small>
         </div>
         <div class="card-body">
@@ -63,109 +60,6 @@
                 <input name="id" type="hidden" value="{{ item.id }}">
                 <input class="btn btn-sm btn-outline-danger d-inline" type="submit" value="Dodaj lek do koszyka">
             </form>
-            <button class="btn btn-danger my-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm-{{item.id}}" aria-expanded="false" aria-controls="collapseForm-{{item.id}}">Zarezerwuj lek</button>
-            <div class="collapse" id="collapseForm-{{item.id}}">
-                <div class="card card-body mt-3">
-                    <h5 class="card-title">Wprowadź dane</h5>
-                    <form method="POST" action="{{ url_for('order.add_order', drugitem_id=item.id) }}">
-                        <fieldset class="form-group">
-                            <div class="form-group">
-                                {{ form.name.label(class="form-control-label")}}
-                                {% if form.name.errors %}
-                                    {{ form.name(class="form-control form-control-lg is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for error in form.name.errors %}
-                                            <span>{{ error }}</span>
-                                        {% endfor %}
-                                    </div>
-                                {% else %}
-                                    {{ form.name(class="form-control form-control-lg")}}
-                                {% endif %}
-                            </div>
-                            <div class="form-group">
-                                {{ form.surname.label(class="form-control-label")}}
-                                {% if form.surname.errors %}
-                                    {{ form.surname(class="form-control form-control-lg is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for error in form.surname.errors %}
-                                            <span>{{ error }}</span>
-                                        {% endfor %}
-                                    </div>
-                                {% else %}
-                                    {{ form.surname(class="form-control form-control-lg")}}
-                                {% endif %}
-                            </div>
-                            <div class="form-group">
-                                {{ form.email.label(class="form-control-label")}}
-                                {% if form.email.errors %}
-                                    {{ form.email(class="form-control form-control-lg is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for error in form.email.errors %}
-                                            <span>{{ error }}</span>
-                                        {% endfor %}
-                                    </div>
-                                {% else %}
-                                    {{ form.email(class="form-control form-control-lg")}}
-                                {% endif %}
-                            </div>
-                            <div class="form-group">
-                                {{ form.phone.label(class="form-control-label")}}
-                                {% if form.phone.errors %}
-                                    {{ form.phone(class="form-control form-control-lg is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for error in form.phone.errors %}
-                                            <span>{{ error }}</span>
-                                        {% endfor %}
-                                    </div>
-                                {% else %}
-                                    {{ form.phone(class="form-control form-control-lg")}}
-                                {% endif %}
-                            </div>
-                            <div class="form-group">
-                                {{ form.address.label(class="form-control-label")}}
-                                {% if form.address.errors %}
-                                    {{ form.address(class="form-control form-control-lg is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for error in form.address.errors %}
-                                            <span>{{ error }}</span>
-                                        {% endfor %}
-                                    </div>
-                                {% else %}
-                                    {{ form.address(class="form-control form-control-lg")}}
-                                {% endif %}
-                            </div>
-                            <div class="form-group">
-                                {{ form.quantity.label(class="form-control-label")}}
-                                {% if form.quantity.errors %}
-                                    {{ form.quantity(class="form-control form-control-lg is-invalid") }}
-                                    <div class="invalid-feedback">
-                                        {% for error in form.quantity.errors %}
-                                            <span>{{ error }}</span>
-                                        {% endfor %}
-                                    </div>
-                                {% else %}
-                                    {{ form.quantity(class="form-control form-control-lg")}}
-                                {% endif %}
-                            </div>
-                            <div class="form-check">
-                                {{ form.prescription(class="form-check-input") }}
-                                {{ form.prescription.label(class="form-check-label") }}
-                            </div>
-                            <div class="form-check">
-                                {{ form.rodo(class="form-check-input") }}
-                                {{ form.rodo.label(class="form-check-label") }}
-                            </div>
-                            <div class="ms-4">
-                                <a href="{{ url_for('rodo') }}" target="_blank">Informacja o przetwarzaniu danych osobowych</a>
-                            </div>
-                        </fieldset>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
-                            {{ form.submit(class="btn btn-outline-danger") }} 
-                        </div>
-                    </form>
-                </div>
-              </div>
         </div>
     </div>
     {% endfor %}

@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, Response
 from medivisor import app, db
 from medivisor.models import Druginfo
-from medivisor.forms import SearchForm, ClientDataForm
+from medivisor.forms import SearchForm
 import json
 
 drugs = ["Allertec", "Ketonal", "Ketoprofen"]
@@ -24,9 +24,8 @@ def search_results(drugname):
     drug = Druginfo.query.filter(Druginfo.name == drugname).first()
     searchform = SearchForm()
     if drug:
-        form = ClientDataForm()
         return render_template(
-            "search_results.html", drug=drug, form=form, searchform=searchform
+            "search_results.html", drug=drug, searchform=searchform
         )
     else:
         return redirect(url_for("error_page"))
