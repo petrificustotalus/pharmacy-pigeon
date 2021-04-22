@@ -12,6 +12,11 @@ def autocomplete():
     return Response(json.dumps(drugs), mimetype="application/json")
 
 
+@app.route("/base", methods=["GET"])
+def base():
+    return render_template("base.jinja2")
+
+
 @app.route("/", methods=["GET", "POST"])
 def home():
     form = SearchForm()
