@@ -33,7 +33,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="search-results-container-padding">
+<div class="search-results-container-padding mt-3">
     {% for item in drug.drugitems %}
     <div class="card card-mb">
         <div class="card-header bar-color">
@@ -44,7 +44,7 @@
             </small>
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{ drug.name }}</h5>
+            <h5 class="card-title">{{ drug.name.capitalize() }}</h5>
             <p class="card-text">
                 Ilość: {{ drug.size }}, Moc: {{ drug.power }}, Refundacja: {{ drug.refundation }}%, Na receptę: {%
                 if drug.prescription == False %} Nie {% endif %}{% if drug.prescription == True %} Tak {% endif %}
@@ -58,7 +58,7 @@
                     <input type="number" step="1" min="1" max="{{ item.quantity }}" name="quantity" value="1" title="Qty" class="input-text qty text" size="4">
                 </div>
                 <input name="id" type="hidden" value="{{ item.id }}">
-                <input class="btn btn-sm btn-outline-danger d-inline" type="submit" value="Dodaj lek do koszyka">
+                <input class="btn btn-sm btn-outline-danger d-inline btn-add-margin" type="submit" value="Dodaj lek do koszyka">
             </form>
         </div>
     </div>

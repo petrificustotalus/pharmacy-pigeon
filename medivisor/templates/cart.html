@@ -27,118 +27,123 @@
 {% endblock %}
 
 {% block content %}
-<div class="search-results-container-padding">
+<div class="search-results-container-padding mt-3">
     <div class="card">
-    <h1>Koszyk</h1>
-        {% for drug in drugs %}
-        <div class="card w-75 mb-2 ms-2">
-            <div class="card-body">
-                <h1>{{ drug }}</h1>
-                <form action="/cart_reduce" method="post" class="d-inline">
-                    <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
-                    <input class="btn btn-outline-danger" type="submit" value="zmniejsz ilość leku">
-                </form>
-                <form action="/cart_increase" method="post" class="d-inline">
-                    <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
-                    <input class="btn btn-outline-danger" type="submit" value="zwiększ ilość leku">
-                </form>
-                <form action="/cart_remove" method="post" class="d-inline">
-                    <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
-                    <input class="btn btn-outline-danger" type="submit" value="usuń wszystko">
-                </form>
+    <h1 class="mt-2 mx-2">Koszyk</h1>
+        {% if drugs %}
+            {% for drug in drugs %}
+            <div class="card w-75 mb-2 ms-2">
+                <div class="card-body">
+                    <h1>{{ drug }}</h1>
+                    <form action="/cart_reduce" method="post" class="d-inline">
+                        <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
+                        <input class="btn btn-outline-danger" type="submit" value="zmniejsz ilość leku">
+                    </form>
+                    <form action="/cart_increase" method="post" class="d-inline">
+                        <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
+                        <input class="btn btn-outline-danger" type="submit" value="zwiększ ilość leku">
+                    </form>
+                    <form action="/cart_remove" method="post" class="d-inline">
+                        <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
+                        <input class="btn btn-outline-danger" type="submit" value="usuń wszystko">
+                    </form>
+                </div>
             </div>
-        </div>
-        {% endfor %}
-        <button class="btn btn-danger mx-2 mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm" aria-expanded="false" aria-controls="#">Zarezerwuj</button>
-        <div class="collapse" id="collapseForm">
-            <div class="card card-body mt-3">
-                <h5 class="card-title">Wprowadź dane</h5>
-                <form method="POST" action="{{ url_for('order.add_cart_orders') }}">
-                    <fieldset class="form-group">
-                        <div class="form-group">
-                            {{ form.name.label(class="form-control-label")}}
-                            {% if form.name.errors %}
-                                {{ form.name(class="form-control form-control-lg is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.name.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.name(class="form-control form-control-lg")}}
-                            {% endif %}
+            {% endfor %}
+            <button class="btn btn-danger mx-2 mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm" aria-expanded="false" aria-controls="#">Zarezerwuj</button>
+            <div class="collapse" id="collapseForm">
+                <div class="card card-body mt-3">
+                    <h5 class="card-title">Wprowadź dane</h5>
+                    <form method="POST" action="{{ url_for('order.add_cart_orders') }}">
+                        <fieldset class="form-group">
+                            <div class="form-group">
+                                {{ form.name.label(class="form-control-label")}}
+                                {% if form.name.errors %}
+                                    {{ form.name(class="form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.name.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.name(class="form-control form-control-lg")}}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.surname.label(class="form-control-label")}}
+                                {% if form.surname.errors %}
+                                    {{ form.surname(class="form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.surname.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.surname(class="form-control form-control-lg")}}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.email.label(class="form-control-label")}}
+                                {% if form.email.errors %}
+                                    {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.email.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.email(class="form-control form-control-lg")}}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.phone.label(class="form-control-label")}}
+                                {% if form.phone.errors %}
+                                    {{ form.phone(class="form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.phone.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.phone(class="form-control form-control-lg")}}
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.address.label(class="form-control-label")}}
+                                {% if form.address.errors %}
+                                    {{ form.address(class="form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.address.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.address(class="form-control form-control-lg")}}
+                                {% endif %}
+                            </div>
+                            <div class="form-check">
+                                {{ form.prescription(class="form-check-input") }}
+                                {{ form.prescription.label(class="form-check-label") }}
+                            </div>
+                            <div class="form-check">
+                                {{ form.rodo(class="form-check-input") }}
+                                {{ form.rodo.label(class="form-check-label") }}
+                            </div>
+                            <div class="ms-4">
+                                <a href="{{ url_for('rodo') }}" target="_blank">Informacja o przetwarzaniu danych osobowych</a>
+                            </div>
+                        </fieldset>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+                            {{ form.submit(class="btn btn-outline-danger") }} 
                         </div>
-                        <div class="form-group">
-                            {{ form.surname.label(class="form-control-label")}}
-                            {% if form.surname.errors %}
-                                {{ form.surname(class="form-control form-control-lg is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.surname.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.surname(class="form-control form-control-lg")}}
-                            {% endif %}
-                        </div>
-                        <div class="form-group">
-                            {{ form.email.label(class="form-control-label")}}
-                            {% if form.email.errors %}
-                                {{ form.email(class="form-control form-control-lg is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.email.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.email(class="form-control form-control-lg")}}
-                            {% endif %}
-                        </div>
-                        <div class="form-group">
-                            {{ form.phone.label(class="form-control-label")}}
-                            {% if form.phone.errors %}
-                                {{ form.phone(class="form-control form-control-lg is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.phone.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.phone(class="form-control form-control-lg")}}
-                            {% endif %}
-                        </div>
-                        <div class="form-group">
-                            {{ form.address.label(class="form-control-label")}}
-                            {% if form.address.errors %}
-                                {{ form.address(class="form-control form-control-lg is-invalid") }}
-                                <div class="invalid-feedback">
-                                    {% for error in form.address.errors %}
-                                        <span>{{ error }}</span>
-                                    {% endfor %}
-                                </div>
-                            {% else %}
-                                {{ form.address(class="form-control form-control-lg")}}
-                            {% endif %}
-                        </div>
-                        <div class="form-check">
-                            {{ form.prescription(class="form-check-input") }}
-                            {{ form.prescription.label(class="form-check-label") }}
-                        </div>
-                        <div class="form-check">
-                            {{ form.rodo(class="form-check-input") }}
-                            {{ form.rodo.label(class="form-check-label") }}
-                        </div>
-                        <div class="ms-4">
-                            <a href="{{ url_for('rodo') }}" target="_blank">Informacja o przetwarzaniu danych osobowych</a>
-                        </div>
-                    </fieldset>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
-                        {{ form.submit(class="btn btn-outline-danger") }} 
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
+        {% else %}
+            <h2 class="mt-2 mx-2">Twój koszyk jest pusty</h2>
+            <a href="{{ url_for('home') }}" class="btn btn-danger my-3 mx-2">Przejdź do strony głównej</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

@@ -25,6 +25,13 @@ html {
 
 .navbar-search{
     position: relative;
+
+}
+@media (min-width: 1200px) {
+    .navbar-search{
+        position: relative;
+        left: 250px;
+    }
 }
 
 .navbar-col{
@@ -149,6 +156,10 @@ html {
 
 .btn-danger, .btn-danger:hover, .btn-danger:active, .btn-danger:visited {
     background-color: rgb(245, 106, 129) !important;
+}
+
+.btn-add-margin{
+    margin-top: -3px;
 }
 
 /* rodo.html */

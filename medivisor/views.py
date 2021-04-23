@@ -17,7 +17,7 @@ def base():
     return render_template("base.jinja2")
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET"])
 def home():
     form = SearchForm()
     return render_template("home.jinja2", form=form)

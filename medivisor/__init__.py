@@ -5,7 +5,7 @@ from flask_mail import Mail
 from flask_session import Session
 from medivisor.config import Config
 
-
+ 
 app = Flask(__name__)
 app.config.from_object(Config)
 app.config['SCHEDULER_API_ENABLED'] = True
