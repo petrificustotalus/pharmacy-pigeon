@@ -150,6 +150,12 @@ html {
     margin-bottom: 15px;
 }
 
+.tr-cart{
+    height: 80px;
+}
+
+
+
 .bg-main-color{
     background-color: rgb(245, 106, 129);
 }
@@ -165,5 +171,9 @@ html {
 /* rodo.html */
 
 .simple-text-bg{
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.65);
+}
+
+.circle-list{
+    list-style-type: circle;
 }

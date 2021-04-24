@@ -27,29 +27,51 @@
 {% endblock %}
 
 {% block content %}
-<div class="search-results-container-padding mt-3">
+<div class="search-results-container-padding mt-4">
     <div class="card">
     <h1 class="mt-2 mx-2">Koszyk</h1>
         {% if drugs %}
-            {% for drug in drugs %}
-            <div class="card w-75 mb-2 ms-2">
-                <div class="card-body">
-                    <h1>{{ drug }}</h1>
-                    <form action="/cart_reduce" method="post" class="d-inline">
-                        <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
-                        <input class="btn btn-outline-danger" type="submit" value="zmniejsz ilość leku">
-                    </form>
-                    <form action="/cart_increase" method="post" class="d-inline">
-                        <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
-                        <input class="btn btn-outline-danger" type="submit" value="zwiększ ilość leku">
-                    </form>
-                    <form action="/cart_remove" method="post" class="d-inline">
-                        <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
-                        <input class="btn btn-outline-danger" type="submit" value="usuń wszystko">
-                    </form>
-                </div>
+            <table class="table">
+                <caption>Lista produktów w koszyku</caption>
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Lek</th>
+                        <th>Ilość</th>
+                        <th>Cena</th>
+                        <th>Apteka</th>
+                        <th class="actions"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for drug in drugs %}
+                            <tr class="tr-cart">
+                                <td><b>{{ drug[0].druginfo.name.capitalize()}}</b> ilość: {{ drug[0].druginfo.size }} moc: {{ drug[0].druginfo.power }}</td>
+                                <td>
+                                    <form action="/cart_reduce" method="post" class="d-inline">
+                                        <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
+                                        <input class="btn btn-outline-danger btn-sm" type="submit" value="-">
+                                    </form>
+                                    {{ drug[1] }}
+                                    <form action="/cart_increase" method="post" class="d-inline">
+                                        <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
+                                        <input class="btn btn-outline-danger btn-sm" type="submit" value="+">
+                                    </form>
+                                </td>
+                                <td>{{ "{:.2f}".format(drug[0].price) }} zł</td>
+                                <td>{{ drug[0].pharmacies.name }}</td>
+                                <td>
+                                    <form action="/cart_remove" method="post" class="d-inline">
+                                        <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
+                                        <input class="btn btn-outline-danger btn-sm" type="submit" value="x">
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+            <div class="mt-5 mx-2 mb-2">
+                <h4>Wartość koszyka: {{ "{:.2f}".format(sum) }} zł</h4>
             </div>
-            {% endfor %}
             <button class="btn btn-danger mx-2 mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseForm" aria-expanded="false" aria-controls="#">Zarezerwuj</button>
             <div class="collapse" id="collapseForm">
                 <div class="card card-body mt-3">
@@ -140,6 +162,7 @@
                     </form>
                 </div>
             </div>
+            <button class="btn btn-danger mx-2 mb-2 " type="button">Zarezerwuj i opłać</button>
         {% else %}
             <h2 class="mt-2 mx-2">Twój koszyk jest pusty</h2>
             <a href="{{ url_for('home') }}" class="btn btn-danger my-3 mx-2">Przejdź do strony głównej</a>

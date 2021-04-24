@@ -59,6 +59,10 @@ def mycart():
         drug = DrugItem.query.filter(DrugItem.id == cart_item["drug_id"]).first()
         quantity = cart_item["quantity"]
         drugs.append((drug, quantity))
+    sum = 0
+    if drugs:
+        for drug in drugs: 
+            sum += drug[0].price
     searchform = SearchForm()
     form = ClientDataForm()
-    return render_template("cart.html", drugs=drugs, form=form, searchform=searchform)
+    return render_template("cart.html",sum=sum, drugs=drugs, form=form, searchform=searchform)
