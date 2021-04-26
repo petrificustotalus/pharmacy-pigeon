@@ -177,3 +177,11 @@ html {
 .circle-list{
     list-style-type: circle;
 }
+
+.cart-margin{
+    margin-bottom: 170px;
+}
+
+.text-aligne-right{
+    text-align-last: flex-end;
+}

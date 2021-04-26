@@ -14,7 +14,7 @@ class ClientDataForm(FlaskForm):
     phone = IntegerField('Telefon kontaktowy')
     address = StringField('Adres')
     quantity = IntegerField('Wprowadź liczbę opakowań', validators=[DataRequired()])
-    prescription = BooleanField('Oświadczam że posiadam ważną receptę do zamówionych leków na receptę.')
+    prescription = BooleanField('Oświadczam że posiadam ważną receptę do zamówionych leków na receptę.', validators=[DataRequired()])
     rodo = BooleanField('Zostałam/-em się z dokumentem Informacja Administratora w związku z przetwarzaniem' + 
     'danych na potrzeby dokonania rezerwacji za pośrednictwem aplikacji Medivisor – zgodnie' 
     'z art. 13 ust. 1 i 2 Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem' 

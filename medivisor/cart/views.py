@@ -62,7 +62,7 @@ def mycart():
     sum = 0
     if drugs:
         for drug in drugs: 
-            sum += drug[0].price
+            sum += (drug[0].price * drug[1])
     searchform = SearchForm()
     form = ClientDataForm()
     return render_template("cart.html",sum=sum, drugs=drugs, form=form, searchform=searchform)

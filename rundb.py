@@ -17,11 +17,11 @@ p3 = Pharmacy(name='Extra Pharmacy', phone=777666553, adress="ul. Młynowa 62", 
 
 
 # # Leki
-d = Druginfo(name='ketonal', size=50, power=100, state='tabs', prescription=True, refundation=0)
-d1 = Druginfo(name='allertec', size=100, power=1, state='syrop', prescription=False, refundation=30)
-d2 = Druginfo(name='zyrtec', size=20, power=10, state='tabs', prescription=True, refundation=0)
-d3 = Druginfo(name='groprinosin', size=20, power=500, state='tabs', prescription=False, refundation=0)
-d4 = Druginfo(name='apap', size=12, power=500, state='tabs', prescription=False, refundation=0)
+d = Druginfo(name='ketonal', size=50, form='tabs', power=100, unit='mg', prescription=True, refundation=0)
+d1 = Druginfo(name='allertec', size=10, form='tabs', power=120, unit='mg', prescription=False, refundation=30)
+d2 = Druginfo(name='zyrtec', size=20, form='tabs', power=10, unit='mg', prescription=True, refundation=0)
+d3 = Druginfo(name='groprinosin', size=20, form='tabs', power=500, unit='mg', prescription=False, refundation=0)
+d4 = Druginfo(name='apap', size=12, form='tabs', power=500, unit='mg', prescription=False, refundation=0)
 
 # # Ceny i dostępność
 price1 = DrugItem(druginfo_id=1, pharmacy_id=1, price=13, quantity=13)
@@ -30,6 +30,11 @@ price3 = DrugItem(druginfo_id=1, pharmacy_id=3, price=13.99, quantity=33)
 price4 = DrugItem(druginfo_id=2, pharmacy_id=1, price=3.46, quantity=10)
 price5 = DrugItem(druginfo_id=2, pharmacy_id=2, price=5.04, quantity=112)
 price6 = DrugItem(druginfo_id=2, pharmacy_id=3, price=4.99, quantity=3)
+price7 = DrugItem(druginfo_id=3, pharmacy_id=2, price=13.59, quantity=120)
+price8 = DrugItem(druginfo_id=3, pharmacy_id=3, price=13.99, quantity=33)
+price9 = DrugItem(druginfo_id=5, pharmacy_id=1, price=6.46, quantity=10)
+price10 = DrugItem(druginfo_id=5, pharmacy_id=2, price=5.99, quantity=11)
+price11 = DrugItem(druginfo_id=5, pharmacy_id=3, price=6.99, quantity=36)
 
 db.session.add(p1)
 db.session.add(p2)
@@ -47,6 +52,11 @@ db.session.add(price3)
 db.session.add(price4)
 db.session.add(price5)
 db.session.add(price6)
+db.session.add(price7)
+db.session.add(price8)
+db.session.add(price9)
+db.session.add(price10)
+db.session.add(price11)
 
 
 # db.session.commit()

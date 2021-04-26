@@ -45,7 +45,7 @@
                 <tbody>
                         {% for drug in drugs %}
                             <tr class="tr-cart">
-                                <td><b>{{ drug[0].druginfo.name.capitalize()}}</b> ilość: {{ drug[0].druginfo.size }} moc: {{ drug[0].druginfo.power }}</td>
+                                <td><b>{{ drug[0].druginfo.name.capitalize()}}</b> ilość: {{ drug[0].druginfo.size }} {% if drug[0].druginfo.form == 'tabs' %} tabletek, {% endif %} moc: {{ drug[0].druginfo.power }} {{ drug[0].druginfo.unit }}</td>
                                 <td>
                                     <form action="/cart_reduce" method="post" class="d-inline">
                                         <input name="id" type="hidden" value="{{ drug[0]['id'] }}">
@@ -154,6 +154,7 @@
                             <div class="ms-4">
                                 <a href="{{ url_for('rodo') }}" target="_blank">Informacja o przetwarzaniu danych osobowych</a>
                             </div>
+                            <input name="sum" type="hidden" value="{{ sum }}">
                         </fieldset>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>

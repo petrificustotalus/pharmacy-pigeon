@@ -31,8 +31,9 @@ class Druginfo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(140))
     size = db.Column(db.Integer)
+    form = db.Column(db.String)
     power = db.Column(db.Float)
-    state = db.Column(db.String(140))
+    unit = db.Column(db.String)
     prescription = db.Column(db.Boolean)
     refundation = db.Column(db.Integer)
     drugitems = db.relationship(
