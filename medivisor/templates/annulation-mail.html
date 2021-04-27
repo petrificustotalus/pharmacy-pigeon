@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Annulation Email Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+    <h4>Z przykrością informujemy że Twoja rezerwacja o numerze {{ order.id }} została anulowana.</h4>
+    <h5>Do zamówienia należały następujące leki:</h5>
+    <ul class="list-group">
+        {% for item in order.orders_items  %}
+            <li class="list-group-item">
+                <h5>{{item.drug_item.druginfo.name.capitalize()}} x{{item.quantity}}</h5>
+                <p class="card-text">Ilość: {{ item.drug_item.druginfo.size }}, Moc: {{ item.drug_item.druginfo.power }}, Refundacja: {{ item.drug_item.druginfo.refundation }}%, Na receptę: {%
+                    if item.drug_item.druginfo.prescription == False %} Nie {% endif %}{% if item.drug_item.druginfo.prescription == True %} Tak, {% endif %} Cena: {{ "{:.2f}".format(item.drug_item.price) }} zł</p>
+                <h5 class="card-title mt-2">W aptece: {{ item.drug_item.pharmacies.name }}</h5>
+                <p class="card-text">Adres: {{ item.drug_item.pharmacies.adress }}, Godziny otwarcia: {{ item.drug_item.pharmacies.open_hours }}, Tel.: {% set phone = item.drug_item.pharmacies.phone|string %} <u>{{phone[ :3 ]}}-{{ phone[3:6] }}-{{ phone[6:] }}</u></p>
+            </li>
+        {% endfor %}
+    </ul>
+    <p>Powodem anulacji jest upłynięcie 48h od dokonania rezerwacji</p>
+    <P style="text-align: right">Z poważaniem</P>
+    <P style="text-align: right">Zespół Medivisor</P>
+</body>
+</html>

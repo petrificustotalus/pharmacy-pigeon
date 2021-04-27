@@ -12,7 +12,8 @@
     <!-- NAVBAR -->
         <nav class="navbar navbar-inner navbar-expand navbar-dark bg-main-color fixed-top">
             <div class="container">
-                <a href="{{ url_for('home') }}" class="navbar-brand margin-brand"><img class="logo" src="../static/logo.png" alt="logo">Medivisor</a>
+                <a href="{{ url_for('home') }}" class="navbar-brand margin-brand sm-hidden"><img class="logo" src="../static/logo.png" alt="logo">Medivisor</a>
+                <a href="{{ url_for('home') }}" class="navbar-brand margin-brand lg-hidden"><img class="logo" src="../static/logo.png" alt="logo"></a>
                 {% block navbar %}
                 {% endblock %}
                 <a href ="{{ url_for('cart.mycart') }}" class="mt-4"><img class="cart_icon" src="../static/cart.png" alt="koszyk"></a>
@@ -22,16 +23,6 @@
         <div class="start">
             <div class="background">
                 <div class="container">
-
-                    {% with messages = get_flashed_messages(with_categories=true) %}
-                        {% if messages %}
-                            {% for category, message in messages %}
-                                <div class="alert alert-{{ category }}">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    {% endwith %}
 
                 {% block content %}
                 {% endblock %}

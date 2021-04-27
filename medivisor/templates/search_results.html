@@ -11,17 +11,17 @@
     <form method="POST" action="{{ url_for('search_results_redirection') }}">
         <fieldset class="form-group">
             <div class="row">
-                <div class="col navbar-col mt-2">
+                <div class="col navbar-col mt-2 margn-sm">
                     <div class="d-inline">
                         {{ searchform.city(class="form-control", placeholder="Miasto") }}
                     </div>
                 </div>
-                <div class="col navbar-col mt-2">
+                <div class="col navbar-col mt-2 margn-sm">
                     <div class="d-inline" id="js-autocomplete">
                         {{ searchform.drugname(class="form-control", placeholder="Nazwa leku") }}
                     </div>
                 </div>
-                <div class="col ">
+                <div class="col margn-sm">
                     <div class="d-inline">
                         <button type="submit" class="btn btn-danger btn-search d-inline">Szukaj</button> 
                     </div>
@@ -33,7 +33,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="search-results-container-padding mt-3">
+<div class="search-results-container-padding mt-3 search-margin">
     {% for item in drug.drugitems %}
     <div class="card card-mb">
         <div class="card-header bar-color">
