@@ -23,7 +23,6 @@ def home():
     return render_template("home.jinja2", form=form)
 
 
-# searchresults route - localhost:5000/<slug>/ wouldn't be better?
 @app.route("/search_results/<drugname>", methods=["GET"])
 def search_results(drugname):
     drug = Druginfo.query.filter(Druginfo.name == drugname).first()

@@ -83,7 +83,7 @@ lg-hidden
     overflow: hidden;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
     .cart_icon{
         margin-right: -50px;
         margin-left: -50px;

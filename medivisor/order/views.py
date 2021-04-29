@@ -41,6 +41,8 @@ def add_cart_orders():
         db.session.add(order_item)
         db.session.commit()
         update_drug_quantity(drugitem_id, quantity)
+        for cart_item in session["cart"]:
+            session["cart"].remove(cart_item)
     return redirect(url_for("order.confirmation", order_id=order.id))
 
 @order.route("/confirmation/<order_id>")

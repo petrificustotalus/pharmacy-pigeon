@@ -37,7 +37,6 @@
     {% for item in drug.drugitems %}
     <div class="card card-mb">
         <div class="card-header bar-color">
-            <!-- tu trzeba przekazać Pharmacy obiekt -->
             <small>
                 <b>Nazwa apreki: </b>{{ item.pharmacies.name }} <b>Adres: </b>{{ item.pharmacies.adress }} <b>Godziny otwarcia: </b>
                 <u>{{ item.pharmacies.open_hours }}</u>
@@ -52,7 +51,6 @@
             <p class="card-text">
                 Cena: {{ "{:.2f}".format(item.price) }} zł
             </p>
-            <!-- Tu należy dodać form z przyciskiem 'Dodaj lek do koszyka' -->
             <form action="/cart" method="post">
                 <div class="quantity buttons_added d-inline">
                     <input type="number" step="1" min="1" max="{{ item.quantity }}" name="quantity" value="1" title="Qty" class="input-text qty text" size="4">

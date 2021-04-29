@@ -6,8 +6,6 @@ from time import time
 from medivisor import db
 
 
-# none of them can be null
-# dodać miasto
 class Pharmacy(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(140))
@@ -22,11 +20,6 @@ class Pharmacy(db.Model):
     def __repr__(self):
         return f"<Pharmacy id: {self.id}, name: {self.name}, phone: {self.phone}, adress: {self.adress}>"
 
-
-# należy zmienić nazwy 'adress' na 'address'
-# power na 'ilość_czynnika_aktywnego' ang
-# state i refundation powinny być SELECT
-# none of them can be null
 class Druginfo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(140))
@@ -111,34 +104,4 @@ class Order(db.Model):
 
     def __repr__(self):
         return f"<Order id: {self.id}, client_id: {self.client_id}, date ordered: {self.date_ordered}, confirmation send: {self.confirmation_send}, expired: {self.expired}, orders items: {self.orders_items}>"
-
-
-# dla 100 leków: +
-# -nazwa leku +
-# -wielkość opakowania  [oddzielna tabela] +
-# -cena dla każdej z aptek +
-# -ilość opakowań w każdej aptece +
-# -moc leku (mlg/ml) +
-# - postać leku +
-# -czy na recepte +
-# refundacja (-; 25%, 50%, 75%) [opisać logikę refundacji] +
-
-# dla 3 aptek:
-# -nazwa apteki +
-# -nr telefonu +
-# -adres (geolokalizacjia) +
-
-# dla zamówień/rezerwacji:
-# imię nazwisko klienta +
-# nr telefonu (opcjonalnie) +
-# adres e-mail +
-# adres klienta (jeśli zamawia z dostawą) +
-# data/godzina złożenia zamówienia +
-# nazwa zamawianego leku +
-# nazwa apteki w której zamówiono lek +
-# opłacono=tak/nie
-# recepta=tak/nie
-# refundacja
-# cena zamówienia [zł]
-
-# ilość leku dostępna w aptece +
+        
